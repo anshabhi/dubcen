@@ -21,6 +21,9 @@ the best browser to be used with DubCen.
 
 The favourites feature is still in beta version. Please report any troubles 
 
-directly to us at https://github.com/anshabhi/dubcen
+directly to us here.
 
 website : www.dubcen.com
+
+
+If you want to make any requests for new calculators/converters please make them on this github page.
