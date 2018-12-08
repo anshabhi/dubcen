@@ -23,7 +23,7 @@ The favourites feature is still in beta version. Please report any troubles
 
 directly to us here.
 
-website : www.dubcen.com
+website : http://anshabhi.github.io/dubcen/
 
 
 If you want to make any requests for new calculators/converters please make them on this github page.
