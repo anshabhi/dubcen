@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> DubCen Circle Calculator </title>
+<link href="../css/metro.css" rel="stylesheet">
+    <link href="../css/metro-icons.css" rel="stylesheet">
+    <link href="../css/metro-responsive.css" rel="stylesheet">
+    <link href="../css/metro-schemes.css" rel="stylesheet">
+    <link href="../css/icons.css" rel="stylesheet">
+	    <link href="../style2.css" rel="stylesheet">
+
+     <link href="../css/font-awesome.css" rel="stylesheet">
+	  <script src="../sweetalert-master/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../sweetalert-master/dist/sweetalert.css">
+	 <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/metro.js"></script>
+	    <script src="../js/jquery.dataTables.min.js"></script>
+		<script src = "../common - Copy.js"></script>
+	 	 <script src = "../scripts/bignumber.min.js"></script>
+
+	</head>
+	<body>
+   
+	<h1 id = "header" style = "text-align:center; color : gold;"> DubCen</h1>
+	<h1 style = "color : #4169E1;"><a onclick = "navigate()" class="nav-button transform"><span></span></a> Circle
+	<span class = "icon fa fa-circle-o"></span>
+	</h1>
+		
+		<div class="example margin20" data-text="input">
+            <div class="grid">
+                
+                <div class="row cells1">
+                    <div class="cell">
+					<form onchange = "calc()" id = "inputForm">
+               <div class="input-control info"  >
+    <input type="text" placeholder = "Area of Circle (A)" id = "inputFirst" required>
+</div>        OR       <div class="input-control info"  >
+    <input type="text" placeholder = "Radius of Circle(R)" id = "inputSecond" required>
+</div>OR
+<div class="input-control info"  >
+    <input type="text" placeholder = "Circumfrence of Circle(C)" id = "inputThird" required>
+</div>
+</form>
+                            
+                        </div>
+                </div>
+                
+            </div>
+        </div>   </div>     
+		<div class="accordion large-heading" data-role="accordion" data-close-any="false">
+                            <div class="frame" id = "resf"  >
+                                <div class="heading" style = "background-color:#40E0D0">Result<span class = "icon fa fa-laptop"></span></div>
+                                <div class="content info result">
+<div class="example" data-text="output" id = "result"> Waiting for Input!
+</div>                                </div>
+                            </div>
+                            <div class="frame active" id = "desc"  >
+                                <div class="heading" style = "background-color:#7FFF00;">Description
+																<span class = "icon  icon-info"></span>
+
+								</div>
+                                <div class="content">
+              <div class="example" data-text="description"> 
+			  
+			  <p id = "source"></p>
+		A cirlce is a conic section consisting of the set of all points the same distance (the radius) from a given point (the centre).
+	</p>
+	 <p class = "working">
+	 The following formulas are used for calculating radius, circumfrence and area of a circle:<br>
+	 <img class = "center" src = "circle.png" alt  = "Circle">
+	 
+	 </p>
+</div> 
+                         
+			  </div>
+                            </div>
+                            <div class="frame"  >
+                                <div class="heading" style = "background-color:#FFFF00;;">History                   
+								<span class = "icon  icon-database"></span>
+</div>
+                                <div class="content" id = "historyDiv">
+		 
+           
+         
+                                </div>
+                            </div>
+                        </div>
+		</body>
+		<script>
+	  var id = '701';
+	  if (localStorage[id] == undefined)
+	  localStorage[id] = "";
+      var table = document.getElementById("table");
+	  var resf = document.getElementById("resf");
+	  	  var inputFirst = document.getElementById("inputFirst");
+	  var inputSecond = document.getElementById("inputSecond");
+	  var inputThird = document.getElementById("inputThird");
+	var result = document.getElementById("result");
+	  
+	  BigNumber.config({ DECIMAL_PLACES: 4 });
+	  
+	 function calc(){
+	 	  var object = new Date();
+
+ 	  var inputFirst  = document.getElementById ("inputFirst");
+	  var inputSecond = document.getElementById("inputSecond");
+	  var inputThird = document.getElementById("inputThird");
+		  var result = document.getElementById("result");
+		  
+		  a = inputFirst.value;
+		  b = inputSecond.value;
+		  c = inputThird.value;
+		 var res2,inputVal,flag4 = false;
+		  inputFirst.disabled = false;
+		  inputSecond.disabled = false;
+		  inputThird.disabled = false;
+		  
+		  var input,activeEle;
+		  if ((a!='') && (a>=0)){
+		  
+		  inputSecond.disabled = true 
+		  inputThird.disabled = true;
+		  activeEle = 'inputFirst';
+		  input = 'A-' +  a;
+		  inputVal = a;
+		  val = new BigNumber(parseFloat(a));
+		  rad =  val.div(3.141592).sqrt();
+
+          cir = rad.times(2).times(3.141592);
+          rad = rad.toString(10);
+		  cir = cir.toString(10);
+res = "The Radius of given circle is :<p class = main> " + rad + "</p><br> The Circumfrence is :<p class = main> " + cir + '</p>';  		  
+		  res2 = "R - " + rad + " C - " + cir;
+		  		  flag4 = true;
+
+		  }
+		  
+		 else if ((b!='') && (b>=0)){
+		  
+		  inputFirst.disabled = true;
+		  inputThird.disabled = true;
+		  activeEle = 'inputSecond';
+		  input ='D-' +  b;
+		  inputVal = b;
+		  val = new BigNumber(parseFloat(b));
+		  area =  val.times(3.141592).times(val);
+
+          cir = val.times(2).times(3.141592);
+          area = area.toString(10);
+		  cir = cir.toString(10);
+res = "The Area of given circle is :<p class = main> " + area + "</p><br> The Circumfrence is :<p class = main> " + cir + '</p>';  		  
+		  res2 = "A - " + area + " C - " + cir;
+		  		  flag4 = true;
+
+		  }
+		  
+		  
+		  
+		    else if ((c!='') && (c>=0)){
+		  
+		  inputFirst.disabled = true;
+		  inputSecond.disabled = true;
+		  activeEle = 'inputThird';
+		  input = 'C-' +  c;
+		  inputVal = c;
+		  val = new BigNumber(parseFloat(c));
+		  rad =  val.div(6.283184);
+          area = rad.times(3.141592).times(rad);
+          rad = rad.toString(10);
+		  area = area.toString(10);
+res = "The Area of given circle is :<p class = main> " + area + "</p><br> The Radius is :<p class = main> " + rad + '</p>';  		  
+		  res2 = "A - " + area + " R - " + rad;
+		  flag4 = true;
+		  }
+		  
+		  
+		  
+		  else {
+
+		  inputFirst.disabled = false;
+		  inputSecond.disabled = false;
+		  inputThird.disabled = false;}
+	
+		   
+		   		  result.innerHTML = res;
+if (flag4){
+var item = input + ")" + res2 + ')' +  object.toLocaleString() + ")" + activeEle + ')' + inputVal + '|';
+	  		
+	  addHistory(item);  
+	  resf.className = 'frame active';
+	desc.className = 'frame';	
+	  }	  }
+	  
+	  function usea(input,field){
+	 
+var inputForm = document.getElementById('inputForm');
+inputForm.reset();
+field.value = input;
+location.href = "#inputFirst";
+calc();}
+
+function loadHistory(){
+	  var history = localStorage[id];
+var himsg = document.getElementById("historyMsg");
+var historyItems = history.split('|');
+	
+	if (historyItems.length == 1){
+	historyDiv.innerHTML = 'Your recent history appears here';
+	
+}
+	else {
+			historyDiv.innerHTML= "<input type = button class = clear onclick = clearHistory() value = 'Clear All'>";
+tabEle = "<table id='table' class='dataTable striped border bordered data-role='datatable,draggable' data-searching='true''><thead><tr><td>SR. NO</td><td>Input</td><td>Result</td><td>Date</td><td>Use</td><td>Delete</td></tr></thead><tfoot><tr><td>SR. NO</td><td>Input</td><td>Output</td><td>Date</td><td>Use</td><td>Delete</td></tr></tfoot><tbody>"
+	
+
+	for (i=0; i<historyItems.length-1;i++)
+	   {
+	var historyData = historyItems[i].split(')');
+    
+	index = i;
+tabEle+= "<tr><td>" + (i+1) + "</td><td>" + historyData[0] + "</td><td>" + historyData[1] + "</td><td>" + historyData[2] + "</td><td> <p onclick = usea("  +  historyData[4] + ',' + historyData[3]+")>Use</p></td><td><p onclick = deleteEntry(" + index +")>Delete</p></td></tr>"  ;
+
+	   }tabEle+= "</tbody></table>";
+	   historyDiv.innerHTML+= tabEle;
+	   $('#table').dataTable( {
+    paging: true,
+    searching: true
+} );
+	   
+	   }
+
+
+}
+	 
+	 
+	
+ 	 loadHistory();
+</script>
+
+		</html>

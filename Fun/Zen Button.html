@@ -1,0 +1,186 @@
+<!DOCTYPE HTML>
+<HTML>
+<HEAD>
+<Title>DubCen Zen Button</Title>
+
+<link href="../css/metro.css" rel="stylesheet">
+    <link href="../css/metro-icons.css" rel="stylesheet">
+    <link href="../css/metro-responsive.css" rel="stylesheet">
+    <link href="../css/metro-schemes.css" rel="stylesheet">
+    <link href="../css/icons.css" rel="stylesheet">
+	    <link href="../style2.css" rel="stylesheet">
+
+     <link href="../css/font-awesome.css" rel="stylesheet">
+	  <script src="../sweetalert-master/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../sweetalert-master/dist/sweetalert.css">
+	 <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/metro.js"></script>
+	    <script src="../js/jquery.dataTables.min.js"></script>
+		<script src = "../common.js"></script>
+<style>
+.zen { height : 20%; width : 20%; text-align : center; font-size : 3.5vh;  position : absolute; top : 60%; left : 40%; border-radius : 2px;}
+.zen:hover {background-color : #FFEBCD; cursor : pointer;}
+</style>
+</HEAD>
+
+<BODY>
+<h1 id = "header" style = "text-align:center; color : gold;"> DubCen</h1>
+	<h1 style = "color : #00FF7F;"><a onclick = "navigate()" class="nav-button transform"><span></span></a> Zen Button
+<span class = "icon icon-happy"></span>
+	</h1>
+<div class = "description">
+<p class = "source">Take advice from the all powerful force of Zen. Zen will give you three phrases each time you click the button - 
+the first phrase changes every hour, the second phrase changes every minute, and the last phrase changes every second. 
+</p>
+</div>
+<INPUT TYPE="button" class = "zen" VALUE="Zen Button" NAME="ZenButton" onClick="zen()">
+
+</BODY>
+<SCRIPT LANGUAGE="JavaScript">
+var currentdate = 0
+var thekoan = ""
+var fframe = 0
+var insight = 0
+var directive = 0
+var beginning = "Koan is: "
+var separator = "\n\n"
+
+function zen(){
+swal(koan());}
+function koan(){
+currentdate = new Date ()
+fframe = currentdate.getHours()
+insight = currentdate.getMinutes()
+directive = currentdate.getSeconds()
+thekoan = separator + getframe() +separator + getinsight() + separator + getdirective()
+return (thekoan)}
+function getframe(){
+if (fframe == 0)
+return "Winter feels no itching;"
+else if (fframe == 1)
+return "Find the plum;"
+else if (fframe == 2)
+return "The fog does not pay taxes;"
+else if (fframe == 3)
+return "Other birds do not like the loudest bird;"
+else if (fframe == 4)
+return "Many moose have travelled your path before you;"
+else if (fframe == 5)
+return "Autumn has no sense of humor;"
+else if (fframe == 6)
+return "Even the clearest glass distorts;"
+else if (fframe == 7)
+return "The well has no sympathy for the peasant;"
+else if (fframe == 8)
+return "No sandal squeaks without purpose;"
+else if (fframe == 9)
+return "A thorn pricks you;"
+else if (fframe == 10)
+return "Who is to say the panda would not be vengeful;"
+else if (fframe == 11)
+return "Tramp through the darkness;"
+else if (fframe == 12)
+return "Work when you can work;"
+else if (fframe == 13)
+return "The artisan keeps his hovel tidy;"
+else if (fframe == 14)
+return "The sparrow sings of deception;"
+else if (fframe == 15)
+return "Tramp through the darkness;"
+else if (fframe == 16)
+return "Who is to say the panda would not be vengeful;"
+else if (fframe == 17)
+return "A thorn pricks you;"
+else if (fframe == 18)
+return "No sandal squeaks without purpose;"
+else if (fframe == 19)
+return "The well has no sympathy for the peasant;"
+else if (fframe == 20)
+return "Even the clearest glass distorts;"
+else if (fframe == 21)
+return "Autumn has no sense of humor;"
+else if (fframe == 22)
+return "Tramp through the darkness;"
+else if (fframe == 23)
+return "The artisan keeps his hovel tidy;"
+}
+function getinsight(){
+if (insight > 44)
+insight = insight - 45
+else if (insight > 29)
+insight = insight - 30
+else if (insight > 14)
+insight = insight - 15
+if (insight == 0)
+return "It tells us the void is empty."
+else if (insight == 1)
+return "Only such a thing can change the universe."
+else if (insight == 2)
+return "Understand this, and be rewarded with clarity."
+else if (insight == 3)
+return "What are the chances?"
+else if (insight == 4)
+return "In this, the true spirit hides."
+else if (insight == 5)
+return "Effort can be applied here."
+else if (insight == 6)
+return "Its center does not rotate."
+else if (insight == 7)
+return "The journey may be longer coming back."
+else if (insight == 8)
+return "This is why we find the truth so piercing."
+else if (insight == 9)
+return "Are we so alike?!?"
+else if (insight == 10)
+return "Yet even a bean has a purpose."
+else if (insight == 11)
+return "The answer often requires a few extra minutes."
+else if (insight == 12)
+return "Some strike with a stick that which they cannot lift."
+else if (insight == 13)
+return "The pure own only themselves and maybe some toiletries."
+else if (insight == 14)
+return "It will speak to you if you let it."
+}
+function getdirective(){
+if (directive > 44)
+directive = directive - 45
+else if (directive > 29)
+directive = directive - 30
+else if (directive > 14)
+directive = directive - 15
+if (directive == 0)
+return "Be like a damp stone."
+else if (directive == 1)
+return "If you fall from the tree, leave your anger on the branch."
+else if (directive == 2)
+return "Choose to bend or to stretch, but choose only one."
+else if (directive == 3)
+return "Fill in every circle completely with a number 2 pencil."
+else if (directive == 4)
+return "Spit only where there is a need for spit."
+else if (directive == 5)
+return "Always lift with your knees."
+else if (directive == 6)
+return "If you need a road, make a road."
+else if (directive == 7)
+return "Choose only once between bamboo and wicker."
+else if (directive == 8)
+return "Do not carve your initials in anything you would not eat."
+else if (directive == 9)
+return "Respect even the space between your toes."
+else if (directive == 10)
+return "Step aside when the universe says, 'Hot stuff coming through!'"
+else if (directive == 11)
+return "Trust your sense of judging melon."
+else if (directive == 12)
+return "It is worse to be covered in molasses."
+else if (directive == 13)
+return "If you are a goose among ducks, run fast."
+else if (directive == 14)
+return "Confront the great conductor and ask him, 'What's your function?'"
+}
+</SCRIPT>
+
+
+</HTML>

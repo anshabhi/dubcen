@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+ <html>
+ <head>
+	 <title>DubCen CHMOD Calculator</title>
+ 
+ <link rel = "stylesheet" type = "text/css" href = "style2.css">
+ <link href="../css/metro.css" rel="stylesheet">
+    <link href="../css/metro-icons.css" rel="stylesheet">
+    <link href="../css/metro-responsive.css" rel="stylesheet">
+    <link href="../css/metro-schemes.css" rel="stylesheet">
+    <link href="../css/icons.css" rel="stylesheet">
+	    <link href="../style2.css" rel="stylesheet">
+
+     <link href="../css/font-awesome.css" rel="stylesheet">
+	 <script src = "../common.js"></script>
+	 <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/metro.js"></script>
+	    
+ <style>
+ .center { height : 70%; width : 70%; position : absolute; top : 20%;}
+ td { height : auto; width : auto;}
+ .source { position : absolute; top : 20%; height : 10%;  font-style : italic; font-size : 3vh;}
+.topic { font-face : verdana ;
+font-weight : bold;}
+ </style>
+ </head>
+	 <body>
+	 <h1 id = "header" style = "text-align:center; color : gold;"> DubCen</h1>
+	<h1 style = "color : #00CED1;"><a onclick = "navigate()" class="nav-button transform"><span></span></a> CHMOD
+	<span class = "icon fa fa-sliders"></span>
+	 </h1>
+ 
+	 <form name="chmod">
+<input name="h_owner" type="hidden" value="">
+<input name="h_group" type="hidden" value="">
+<input name="h_other" type="hidden" value="">
+<table class = "center" cellpadding="5" cellspacing="1">
+<tr >
+       <td colspan="4"></td>
+</tr><tr  align="center">
+       <td><font face="verdana" size="-1"><b>Permission</b></font></td>
+       <td><font face="verdana" size="-1"><b>Owner</b></font></td>
+       <td><font face="verdana" size="-1"><b>Group</b></font></td>
+	   <td><font face="verdana" size="-1"><b>Other</b></font></td>
+</tr><tr  align="center">
+       <td class = "topic">Read</td>
+       <td><input type="checkbox" name="owner4" value="4" onclick="calculator('owner', 4)"></td>
+       <td><input type="checkbox" name="group4" value="4" onclick="calculator('group', 4)"></td>
+       <td><input type="checkbox" name="other4" value="4" onclick="calculator('other', 4)"></td>
+</tr><tr  align="center">
+       <td class = "topic">Write</td>
+       <td><input type="checkbox" name="owner2" value="2" onclick="calculator('owner', 2)"></td>
+       <td><input type="checkbox" name="group2" value="2" onclick="calculator('group', 2)"></td>
+       <td><input type="checkbox" name="other2" value="2" onclick="calculator('other', 2)"></td>
+</tr><tr  align="center">
+       <td class = "topic">Execute</td>
+       <td><input type="checkbox" name="owner1" value="1" onclick="calculator('owner', 1)"></td>
+       <td><input type="checkbox" name="group1" value="1" onclick="calculator('group', 1)"></td>
+       <td><input type="checkbox" name="other1" value="1" onclick="calculator('other', 1)"></td>
+</tr><tr>
+       <td class = "topic">CHMOD Value:</td>
+       <td><input type="text" name="t_owner" value="" size="1"></td>
+       <td><input type="text" name="t_group" value="" size="1"></td>
+       <td><input type="text" name="t_other" value="" size="1"></td>
+</tr>
+</table>
+</form>
+<p class = "source"> In Unix-like operating systems, chmod is the command and system call which may change the access permissions to file system objects (files and directories). It may also alter special mode flags. The request is filtered by the umask. The name is an abbreviation of change mode.</p>
+	 </body>
+	  <script>
+	  function calculator(user, number){
+// Owner
+if (user == "owner" && number == "4"){var box = eval("document.chmod.owner4")}
+if (user == "owner" && number == "2"){var box = eval("document.chmod.owner2")}
+if (user == "owner" && number == "1"){var box = eval("document.chmod.owner1")}
+// Group
+if (user == "group" && number == "4"){var box = eval("document.chmod.group4")}
+if (user == "group" && number == "2"){var box = eval("document.chmod.group2")}
+if (user == "group" && number == "1"){var box = eval("document.chmod.group1")}
+// Other
+if (user == "other" && number == "4"){var box = eval("document.chmod.other4")}
+if (user == "other" && number == "2"){var box = eval("document.chmod.other2")}
+if (user == "other" && number == "1"){var box = eval("document.chmod.other1")}
+if (box.checked == true){
+if (user == "owner"){
+document.chmod.h_owner.value += ("+number")
+var a= (document.chmod.h_owner.value)
+var b= eval(a)
+document.chmod.h_owner.value=b
+document.chmod.t_owner.value=b
+}if (user == "group"){
+document.chmod.h_group.value += ("+number")
+var a= (document.chmod.h_group.value)
+var b= eval(a)
+document.chmod.h_group.value=b
+document.chmod.t_group.value=b
+}if (user == "other"){
+document.chmod.h_other.value += ("+number")
+var a= (document.chmod.h_other.value)
+var b= eval(a)
+document.chmod.h_other.value=b
+document.chmod.t_other.value=b
+}
+}
+if (box.checked == false){
+if (user == "owner"){
+if (document.chmod.h_owner.value == ""){
+document.chmod.t_owner.value=""
+}else {
+var a=(document.chmod.h_owner.value);
+b=a-(number);
+c=eval(b);
+document.chmod.h_owner.value=c
+document.chmod.t_owner.value=c
+}}if (user == "group"){
+if (document.chmod.h_group.value == ""){
+document.chmod.t_group.value=""
+}else {
+var a=(document.chmod.h_group.value);
+b=a-(number);
+c=eval(b);
+document.chmod.h_group.value=c
+document.chmod.t_group.value=c
+}}if (user == "other"){
+if (document.chmod.h_other.value == ""){
+document.chmod.t_other.value=""
+}else {
+var a=(document.chmod.h_other.value);
+b=a-(number);
+c=eval(b);
+document.chmod.h_other.value=c
+document.chmod.t_other.value=c
+}}
+}}
+
+	 </script>
+
+                         
+
+	 </html>

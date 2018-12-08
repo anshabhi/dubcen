@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> DubCen </title>
+<script src = "quantities.js">
+</script>
+
+<script src = "converter.js">
+</script>
+<link href="../css/metro.css" rel="stylesheet">
+    <link href="../css/metro-icons.css" rel="stylesheet">
+    <link href="../css/metro-responsive.css" rel="stylesheet">
+    <link href="../css/metro-schemes.css" rel="stylesheet">
+    <link href="../css/icons.css" rel="stylesheet">
+	    <link href="../style2.css" rel="stylesheet">
+<link rel = "stylesheet" type = "text/css" href = "style2.css">
+
+     <link href="../css/font-awesome.css" rel="stylesheet">
+	  <script src="../sweetalert-master/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../sweetalert-master/dist/sweetalert.css">
+	
+	<script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/metro.js"></script>
+
+	 <script src="../js/jquery.dataTables.min.js"></script>
+		<script src = "../common - Copy.js"></script>
+	 	 <script src = "../scripts/bignumber.min.js"></script>
+		     <script src="../js/select2.min.js"></script>
+
+
+
+	</head>
+	<body>
+   <select id = "mySelect" onchange="loadOptions()" disabled>
+  <option>Acceleration </option>
+ <option >Area</option>   
+  
+   <option >Density</option>
+	    
+		<option >Energy & Work </option>
+		<option> Force </option>
+		 <option >Memory</option>
+          <option >Length</option>		
+		<option >Memory Rate</option>
+							    <option >Speed</option>
+								<option >Temperature</option>
+								<option >Volume</option>
+											  <option >Weight & Mass</option>
+  <option>Acceleration (angular)</option>
+  
+  <option>Angle</option>
+   
+  <option>Magnetic Field</option>
+    <option>Concentration</option> 
+		  
+			  <option>Illumination</option>
+
+				<option>Magnetic Flux</option>
+				  <option>Moment of Inertia</option>
+				  <option>Momentum</option>
+				  
+				  <option>Power</option>
+				    <option>Pressure</option>
+					<option >Resistance</option>
+						    <option>Resistivity</option>
+							  
+								  <option>Speed - Angular</option>
+								    
+									  <option>Time</option>
+								<option>Charge</option>
+										  
+										    
+</select></div>
+	<h1 style = "text-align:center; color : gold;"> DubCen Converters</h1>
+	<h1 style = "color : #FF8243;"><a onclick = "navigate()" class="nav-button transform"><span></span></a>
+	<span id = "heading"> DubCen Converters</span>
+	<span class = "icon fa fa-convert"></span>
+	</h1>
+		
+    <div class = "fromHead">From:</div><div class = "toHead">To:</div>
+
+<input id = "fromVal" onchange = "calc()" type = "number" class = "fromVal" value = 1> 
+
+<div id = "input" class = "from" >
+</div> <p id = "toVal" class = "toVal"></p>
+
+<div id ="output" class = "to">
+</div>     
+
+
+		<div class="accordion large-heading" data-role="accordion" data-close-any="false">
+                            <div class="frame" id = "resf"  >
+                                <div class="heading" style = "background-color:#40E0D0">Result<span class = "icon fa fa-laptop"></span></div>
+                                <div class="content info">
+<div class="example" data-text="output" id = "result"> Waiting for Input!
+</div>                                </div>
+                            </div>
+                            <div class="frame active" id = "desc"  >
+                                <div class="heading" style = "background-color:#7FFF00;">Description
+																<span class = "icon  icon-info"></span>
+
+								</div>
+                                <div class="content">
+              <div class="example" data-text="description"> 
+			  		<p id = "source">This converter can convert 27 quantities and over 1000 units.</p>
+					<div id = "description" class = "description">
+
+	
+	 <p class = "working" id = "working"></p>
+	 </div>
+</div> 
+                         
+			  </div>
+                            </div>
+                            <div class="frame"  >
+                                <div class="heading" style = "background-color:#FFFF00;;">History                   
+								<span class = "icon  icon-database"></span>
+</div>
+                                <div class="content" id = "historyDiv">
+		 
+           
+         
+                                </div>
+                            </div>
+                        </div>
+		</body>
+	<script>
+$(window).load(function() {
+     start();
+});
+$(document).ready(function() {});
+
+	</script>
+
+		</html>

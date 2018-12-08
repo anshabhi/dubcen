@@ -1,0 +1,34 @@
+
+.big {font-size: 60px; display : inline;}
+.fromHead {top:15%; left:0%; position : fixed;}
+.toHead {top:15%; right:50%; position : fixed;}
+.fromVal {top : 20%; left:0%; position:fixed;}
+.from {top : 20%; left:15%; position:fixed;}
+.to {top : 20%; right:10%; position : fixed;}
+.toVal {top : 20%; right:40%; position : fixed; margin : 0; padding : 0;}
+.button { height : 100%; width : 100%; border-radius : 20px; background-color :#CBCC00;}
+td {height : auto; width : auto; margin : 0; padding : 0;}
+.inputTable {top : 60%; left: 0%; position : fixed; height : 40%; width : 20%;}
+.history {top : 60%; left: 30%; position: fixed; width : 70%; height : 40%; overflow : scroll; color :#0099CC; }
+.historyT { margin : 0; padding : 0;height : 100%; width : 100%; overflow : scroll; border : 0px 0px 0px 0px; }  
+html,body {height :90%; width : 90%;}
+.transparent {opacity : 0;}
+td {height : auto; width : auto; text-align : center; margin: 0; padding :0;}
+.input { top : 10%; left : 0%; width : 100%; height : 10%; position: absolute;}
+.navigation{top:0% ;left : 0%; height : 8%; width : 100%; position : absolute; transition: 1s ease-out; text-align : center; font-size : 3.5vh; overflow : fixed;}
+.blank {top : 8%; left : 0%; width : 100%; background-color : black; margin : 0; position : absolute; height : 20%; opacity : 0;}
+.inputFirst {top : 12%; left : 5%; position : absolute;}
+.result {overflow-x:hidden; height : 10%; top : 15%; width: 90%; left : 5%; position : absolute; color:#FF0000; font-size : 4vh;}
+.description {top : 25%; left : 5%; position : absolute; height : 25%; width : 90%; overflow-x : hidden; color : #FF0000;  margin:0; padding : 0;}
+.heading {top: 0%; text-align : center; color :  #CBCC00 ; left : 0%; height : 100%; width : 100%; position : absolute; transition: 1s ease-out; font-size : 5vh; margin:0; padding : 0; z-index : 1; overflow : fixed}
+.source {font-style : italic; font-size : 3vh;}
+a { text-decoration : none; color : blue;}
+a:visited {color : blue;}
+
+.working {font-family:seriff  ; font-size : 3vh; }
+.main { font-style : bold; margin : 0; padding : 0; display : inline; color : gray; text-align:center;}
+img.center {
+    display: block;
+    margin: 0 auto;
+}
+

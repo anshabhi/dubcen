@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> DubCen Stock Calculator</title>
+<link href="../css/metro.css" rel="stylesheet">
+    <link href="../css/metro-icons.css" rel="stylesheet">
+    <link href="../css/metro-responsive.css" rel="stylesheet">
+    <link href="../css/metro-schemes.css" rel="stylesheet">
+    <link href="../css/icons.css" rel="stylesheet">
+	    <link href="../style2.css" rel="stylesheet">
+
+     <link href="../css/font-awesome.css" rel="stylesheet">
+	  <script src="../sweetalert-master/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../sweetalert-master/dist/sweetalert.css">
+	 <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/metro.js"></script>
+	    <script src="../js/jquery.dataTables.min.js"></script>
+		<script src = "../common - Copy.js"></script>
+	 	 <script src = "../scripts/bignumber.min.js"></script>
+		 <script src = "amortizationJS.js"></script>
+
+	</head>
+	<body>
+   
+	<h1 id = "header" style = "text-align:center; color : gold;"> DubCen</h1>
+	<h1 style = "color : #6A70D6;"><a onclick = "navigate()" class="nav-button transform"><span></span></a> Stock
+	<span class = "icon fa fa-bar-chart"></span>
+	</h1>
+		
+		<div class="example margin20" data-text="input">
+            <div class="grid">
+                
+                <div class="row cells1">
+                    <div class="cell">
+					<form onchange = "calc()">
+               <div class="input-control text info"  >
+    <input type="text" placeholder = "Number of Shares " id = "inputFirst" required>
+</div><div class="input-control info"  >
+    <input type="text" placeholder = "Purchase Price (per share)" id = "inputSecond" required>
+</div><div class="input-control info"  >
+    <input type="text" placeholder = "Purchase Commision(%)" id = "inputThird" required>
+</div><div class="input-control info"  >
+    <input type="text" placeholder = "Selling Price (per share)" id = "inputFourth" required>
+</div><div class="input-control info"  >
+    <input type="text" placeholder = "Selling Commision(%)" id = "inputFifth" required>
+</div>
+			   
+                </div>
+                
+            </div>
+        </div>   </div>     
+		<div class="accordion large-heading" data-role="accordion" data-close-any="false">
+                            <div class="frame" id = "resf"  >
+                                <div class="heading" style = "background-color:#FF4500;">Result<span class = "icon fa fa-laptop"></span></div>
+                                <div class="content info result">
+<div class="example" data-text="output" id = "result"> Waiting for Input!
+</div>                                </div>
+                            </div>
+                            <div class="frame active" id = "desc"  >
+                                <div class="heading" style = "background-color:#87CEFA;">Description
+																<span class = "icon  icon-info"></span>
+
+								</div>
+                                <div class="content">
+              <div class="example" data-text="description">
+	<p class = "source">
+	 Deciding when to buying and sell stocks is difficult enough - figuring the profit or loss from that trade shouldn't have to be. Just enter the number of shares,
+	 your purchase price, your selling price, and the commission fees for the trade and this calculator instantly figures your resulting profit or loss after commission fees. 
+	 
+	 </p>			  
+</div> 
+                         
+			  </div>
+                            </div>
+                            <div class="frame"  >
+                                <div class="heading" style = "background-color:#40E0D0;">History                   
+								<span class = "icon  icon-database"></span>
+</div>
+                                <div class="content" id = "historyDiv">
+		 
+           
+         
+                                </div>
+                            </div>
+                        </div>
+		</body>
+		<script>
+	  var id = '409';
+	  if (localStorage[id] == undefined)
+	  localStorage[id] = "";
+      var table = document.getElementById("table");
+	  var resf = document.getElementById("resf");
+	  	  
+var inputFirst = document.getElementById("inputFirst");
+	  var inputSecond = document.getElementById("inputSecond");
+	  var inputThird = document.getElementById("inputThird");
+	  var inputFourth = document.getElementById("inputFourth");
+	  var inputFifth = document.getElementById("inputFifth");
+	  var result = document.getElementById("result");
+	  function calc(){
+	  	  var object = new Date();
+res = '';
+     flag = true;
+var shares = parseFloat(inputFirst.value),buyprice = parseFloat(inputSecond.value)
+var buycomm = parseFloat(inputThird.value),sellprice = parseFloat(inputFourth.value),sellcomm = parseFloat(inputFifth.value) ;
+	if (!isNaN(shares) && !isNaN(buycomm) && !isNaN(buyprice) && !isNaN(sellcomm) && !isNaN(sellprice)){
+bought = parseFloat(shares * buyprice)*(1+buycomm/100); 
+sold = parseFloat(shares * sellprice)*(1-sellcomm/100); 
+resl = sold - bought;
+
+res+= "Purchased For: <p class = main>" + bought;
+res+= "</p><br> Sold for: <p class = main> " + sold;
+res+= "</p><br>Net: <p class = main>" + resl + '</p>';
+
+result.innerHTML = res;
+     
+var item = shares + ','+ buyprice +',' + buycomm + ',' + sellprice + ',' + sellcomm + ')' + bought + ',' + sold +',' +resl+ ")" + object.toLocaleString() + '|';
+	  addHistory(item);  	 
+
+	 
+	  resf.className = 'frame active';
+	desc.className = 'frame';
+	  
+	  }}
+	 
+	 function usea(input){
+	var inputValues = input.split(',');
+	
+inputFirst.value = inputValues[0];
+inputSecond.value = inputValues[1];
+inputThird.value = inputValues[2];
+inputFourth.value = inputValues[3];
+inputFifth.value = inputValues[4];
+location.href = "#inputFirst";
+calc();
+}
+
+loadHistory();
+</script>
+
+		</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> DubCen Cone Calculator </title>
+<link href="../css/metro.css" rel="stylesheet">
+    <link href="../css/metro-icons.css" rel="stylesheet">
+    <link href="../css/metro-responsive.css" rel="stylesheet">
+    <link href="../css/metro-schemes.css" rel="stylesheet">
+    <link href="../css/icons.css" rel="stylesheet">
+	    <link href="../style2.css" rel="stylesheet">
+
+     <link href="../css/font-awesome.css" rel="stylesheet">
+	  <script src="../sweetalert-master/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../sweetalert-master/dist/sweetalert.css">
+	 <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/metro.js"></script>
+	    <script src="../js/jquery.dataTables.min.js"></script>
+		<script src = "../common - Copy.js"></script>
+	 	 <script src = "../scripts/bignumber.min.js"></script>
+	</head>
+	<body>
+   
+	<h1 id = "header" style = "text-align:center; color : gold;"> DubCen</h1>
+	<h1 style = "color : #FF69B4;"><a onclick = "navigate()" class="nav-button transform"><span></span></a> Cone
+	<span class = "icon icon-cone-2"></span>
+	</h1>
+		
+		<div class="example margin20" data-text="input">
+            <div class="grid">
+                
+                <div class="row cells1">
+                    <div class="cell">
+					<form onchange = "calc()">
+               <div class="input-control info"  >
+    <input type="text" placeholder = "Radius (r)" id = "inputFirst" required>
+</div>               <div class="input-control info"  >
+    <input type="text" placeholder = "Height (h)" id = "inputSecond" required>
+</div>
+</form>
+                            
+                        </div>
+                </div>
+                
+            </div>
+        </div>   </div>     
+		<div class="accordion large-heading" data-role="accordion" data-close-any="false">
+                            <div class="frame" id = "resf"  >
+                                <div class="heading" style = "background-color:#40E0D0">Result<span class = "icon fa fa-laptop"></span></div>
+                                <div class="content info result">
+<div class="example" data-text="output" id = "result"> Waiting for Input!
+</div>                                </div>
+                            </div>
+                            <div class="frame active" id = "desc"  >
+                                <div class="heading" style = "background-color:pink;">Description
+																<span class = "icon  icon-info"></span>
+
+								</div>
+                                <div class="content">
+              <div class="example" data-text="description"> 
+			  <p class = "source">
+	
+	 Cone is a three-dimensional figure that has one circular base and one vertex (apex).
+	 A right cone is a cone in which the apex is aligned directly above the center of the base.
+	 </p>
+	 <p class = "working">For a cone,
+	 <img class = "center" src = "cone2.png" alt = "Cone Volume">
+	 <img class = "center" src = "cone.png" alt = "Cone Surface Area">
+	 </p>
+			  
+</div> 
+                         
+			  </div>
+                            </div>
+                            <div class="frame"  >
+                                <div class="heading" style = "background-color:#FFFF00;;">History                   
+								<span class = "icon  icon-database"></span>
+</div>
+                                <div class="content" id = "historyDiv">
+		 
+           
+         
+                                </div>
+                            </div>
+                        </div>
+		</body>
+		<script>
+	  var id = '718';
+	  if (localStorage[id] == undefined)
+	  localStorage[id] = "";
+      var table = document.getElementById("table");
+	  var resf = document.getElementById("resf");
+	  	  var inputFirst = document.getElementById("inputFirst");
+	  var inputSecond = document.getElementById("inputSecond");
+	var result = document.getElementById("result");
+	  
+	  function calc(){
+	  
+	  var object = new Date();
+
+a = new BigNumber(parseFloat(inputFirst.value));
+b = new BigNumber(parseFloat(inputSecond.value));
+
+	 if (!isNaN(a) && !isNaN(b)){
+v = a.div(3).times(Math.PI.toPrecision(10)).times(a).times(b).toFixed(4);
+	 s1 = a.times(Math.PI.toPrecision(10)).times(a);
+	 s2 = a.times(Math.PI.toPrecision(10)).times(a.toPower(2).add(b.toPower(2)).squareRoot())
+	 s = s1.add(s2);
+	 s1 = s1.toFixed(4)
+	 s2 = s2.toFixed(4);
+	 s = s.toFixed(4);
+result.innerHTML = "Volume:<p class = main> " + v + "</p><br> Base Area :<p class = main>" + s1 + "</p><br>Lateral Surface Area:<p class = main> "+s2+"</p><br> Total:<p class = main>" + s + "</p>";  	 
+	 
+var item = a + ','+ b +')' + v + ',' + s1 + ',' + s2 + ',' + s + ')' + object.toLocaleString() + '|';
+	  addHistory(item); 	
+	 
+ 
+resf.className = 'frame active';
+	desc.className = 'frame';	 
+
+	 }}
+	 
+	 function usea(input){
+	var inputValues = input.split(',');
+	
+inputFirst.value = inputValues[0];
+inputSecond.value = inputValues[1];
+location.href = "#inputFirst";
+calc();}
+	 
+	
+ 	 loadHistory();
+</script>
+
+		</html>

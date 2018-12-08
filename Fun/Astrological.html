@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> DubCen Astrological Calculator </title>
+<link href="../css/metro.css" rel="stylesheet">
+    <link href="../css/metro-icons.css" rel="stylesheet">
+    <link href="../css/metro-responsive.css" rel="stylesheet">
+    <link href="../css/metro-schemes.css" rel="stylesheet">
+    <link href="../css/icons.css" rel="stylesheet">
+	    <link href="../style2.css" rel="stylesheet">
+
+     <link href="../css/font-awesome.css" rel="stylesheet">
+	  <script src="../sweetalert-master/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../sweetalert-master/dist/sweetalert.css">
+	 <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/metro.js"></script>
+	    <script src="../js/jquery.dataTables.min.js"></script>
+		<script src = "../common.js"></script>
+	 
+<style>
+.main { font-style : bold; margin : 0; padding : 0; display : inline; color : gray; text-align:center;}
+</style>
+	</head>
+	<body>
+   
+	<h1 id = "header" style = "text-align:center; color : gold;"> DubCen</h1>
+	<h1 style = "color : #FF9F94;"><a onclick = "navigate()" class="nav-button transform"><span></span></a> Astrological
+	<span class = "icon fa fa-star"></span>
+	</h1>
+		
+		<div class="example margin20" data-text="input">
+            <div class="grid">
+                
+                <div class="row cells2">
+                    <div class="cell">
+              Your date of birth:<div class="input-control text" id = "datef" data-role="datepicker,draggable" data-format="yyyy-mm-d" data-scheme="darcula">
+                            <input type="text" id = "inputFirst" onchange = "calc()">
+                            <button class="button"><span class="mif-calendar"></span></button>
+                        </div>
+                </div>
+                
+            </div>
+        </div>   </div>     
+		<div class="accordion large-heading" data-role="accordion" data-close-any="false">
+                            <div class="frame" id = "resf"  >
+                                <div class="heading" style = "background-color:#FF7F50;">Result<span class = "icon fa fa-laptop"></span></div>
+                                <div class="content info result">
+<div class="example" data-text="output" id = "result"> Waiting for Input!
+</div>                                </div>
+                            </div>
+                            <div class="frame active" id = "desc"  >
+                                <div class="heading" style = "background-color:#7FFF00;">Description
+																<span class = "icon  icon-info"></span>
+
+								</div>
+                                <div class="content">
+              <div class="example" data-text="description"> 	 <p class = "source">This calculator will tell you what is your Sun Sign and Chinese Sign.</p>
+
+</div> 
+                         
+			  </div>
+                            </div>
+                            <div class="frame"  >
+                                <div class="heading" style = "background-color:#40E0D0;">History                   
+								<span class = "icon  icon-database"></span>
+</div>
+                                <div class="content" id = "historyDiv">
+		 
+           
+         
+                                </div>
+                            </div>
+                        </div>
+		</body>
+		<script>
+	  var id = '509';
+	  if (localStorage[id] == undefined)
+	  localStorage[id] = "";
+	  var inputFirst = document.getElementById("inputFirst");
+	  var heading = document.getElementById("heading");
+	  var result = document.getElementById("result");
+      var table = document.getElementById("table");
+	  var resf = document.getElementById("resf");
+
+	  $("#datef").datepicker({
+            changeMonth: true,
+            changeYear: true,
+          
+    maxDate: '+0D', 
+    yearRange: '-100',
+
+        });
+	 
+
+	function calc(){	         
+	 var object = new Date();
+
+a = inputFirst.value;
+b = a.split('-');
+birthyear = b[0];
+month = b[1];
+date = b[2];
+var sign,csign;
+start = 1901;
+
+ if (month == 1 && date >=20 || month == 2 && date <=18) {sign = "Aquarius";}
+else if (month == 2 && date >=19 || month == 3 && date <=20) {sign = "Pisces";}
+else if (month == 3 && date >=21 || month == 4 && date <=19) {sign = "Aries";}
+else if (month == 4 && date >=20 || month == 5 && date <=20) {sign = "Taurus";}
+else if (month == 5 && date >=21 || month == 6 && date <=21) {sign = "Gemini";}
+else if (month == 6 && date >=22 || month == 7 && date <=22) {sign = "Cancer";}
+else if (month == 7 && date >=23 || month == 8 && date <=22) {sign = "Leo";}
+else if (month == 8 && date >=23 || month == 9 && date <=22) {sign = "Virgo";}
+else if (month == 9 && date >=23 || month == 10 && date <=22) {sign = "Libra";}
+else if (month == 10 && date >=23 || month == 11 && date <=21) {sign = "Scorpio";}
+else if (month == 11 && date >=22 || month == 12 && date <=21) {sign = "Sagittarius";}
+else if (month == 12 && date >=22 || month == 1 && date <=19) {sign = "Capricorn";}
+
+x = (start - birthyear) % 12
+
+
+ if (x == 1 || x == -11) {csign = "Rat";}
+else if (x == 0) {csign ="Ox";}
+else if (x == 11 || x == -1) {csign ="Tiger";}
+else if (x == 10 || x == -2) {csign ="Rabbit/Cat";}
+else if (x == 9 || x == -3)  {csign ="Dragon";}
+else if (x == 8 || x == -4)  {csign ="Snake";}
+else if (x == 7 || x == -5)  {csign = "Horse";}
+else if (x == 6 || x == -6)  {csign = "Sheep";}
+else if (x == 5 || x == -7)  {csign = "Monkey";}
+else if (x == 4 || x == -8)  {csign = "Cock/Phoenix";}
+else if (x == 3 || x == -9)  {csign = "Dog";}
+else if (x == 2 || x == -10)  {csign = "Boar";}  
+
+
+result.innerHTML = "Your Sun Sign is:<p class = main> " + sign + "</p><br>Your Chinese sign is: <p class = main> " + csign + "</p>";  
+
+
+		  
+var item = a + ")" + sign + ',' + csign +")" + object.toLocaleString() + '|';
+	  addHistory(item);  
+	
+	resf.className = 'frame active';
+	desc.className = 'frame';	 
+
+	}  	  
+
+function correct(a){
+if (a < 10)
+return '0' + a;
+else
+return a;
+}
+
+  
+ 	 loadHistory();
+</script>
+
+		</html>

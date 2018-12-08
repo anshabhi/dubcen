@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> DubCen BMR Calculator </title>
+<link href="../css/metro.css" rel="stylesheet">
+    <link href="../css/metro-icons.css" rel="stylesheet">
+    <link href="../css/metro-responsive.css" rel="stylesheet">
+    <link href="../css/metro-schemes.css" rel="stylesheet">
+    <link href="../css/icons.css" rel="stylesheet">
+	    <link href="../style2.css" rel="stylesheet">
+
+     <link href="../css/font-awesome.css" rel="stylesheet">
+	  <script src="../sweetalert-master/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../sweetalert-master/dist/sweetalert.css">
+	 <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/metro.js"></script>
+	    <script src="../js/jquery.dataTables.min.js"></script>
+		<script src = "../common - Copy.js"></script>
+	 	 <script src = "../scripts/bignumber.min.js"></script>
+<style>
+.main { font-style : bold; margin : 0; padding : 0; display : inline; color : gray; text-align:center;}
+</style>
+	</head>
+	<body>
+   
+	<h1 id = "header" style = "text-align:center; color : gold;"> DubCen</h1>
+	<h1 style = "color : #FF4848;"><a onclick = "navigate()" class="nav-button transform"><span></span></a> Basal Metabolic Rate 
+
+	<span class = "icon fa fa-user-md"></span>
+	</h1>
+		
+		<div class="example margin20" data-text="input">
+            <div class="grid">
+                
+                <div class="row cells1">
+                    <div class="cell">
+					<form onchange = "calc()">
+               <div class="input-control info"  >
+    <input type="text" placeholder = "Weight (in kg)"id = "inputFirst" required>
+</div><div class="input-control info"  data-keys="1,2,3,4,5,6,7,8,9,.">
+    <input type="text" placeholder = "Height (in m)" id = "inputSecond"  required>
+</div><div class="input-control info"  >
+    <input type="text" placeholder = "Age"id = "inputThird" required>
+</div>Gender:
+<select id = "inputFourth" ><option value = "Male">Male</option><option value = "Female">Female</option></select>
+			   </form>
+                </div>
+                
+            </div>
+        </div>   </div>     
+		<div class="accordion large-heading" data-role="accordion" data-close-any="false">
+                            <div class="frame" id = "resf"  >
+                                <div class="heading" style = "background-color:#FFFF00;">Result<span class = "icon fa fa-laptop"></span></div>
+                                <div class="content info result">
+<div class="example" data-text="output" id = "result"> Waiting for Input!
+</div>                                </div>
+                            </div>
+                            <div class="frame active" id = "desc"  >
+                                <div class="heading" style = "background-color:#7FFF00;">Description
+								<span class = "icon  icon-info"></span>
+								</div>
+                                <div class="content">
+              <div class="example" data-text="description"> 
+			  
+		<p id = "source">
+		Basal Metabolic Rate is the amount of energy (calories) you burn at rest and which your body uses up just surviving.
+	
+		</p>
+		
+	
+	 <p class = "working">The Mifflin St Jeor Equation is used in this calculator:
+	 <img class = "center" src = "bmr.png" alt = "BMR"><br>
+	 where s is +5 for males and -161 for females
+	 </p>
+</div> 
+                         
+			  </div>
+                            </div>
+                            <div class="frame"  >
+                                <div class="heading" style = "background-color:#FF7F50;">History                   
+								<span class = "icon  icon-database"></span>
+</div>
+                                <div class="content" id = "historyDiv">
+		 
+           
+         
+                                </div>
+                            </div>
+                        </div>
+		</body>
+		<script>
+	  var id = '601';
+	  if (localStorage[id] == undefined)
+	  localStorage[id] = "";
+      var table = document.getElementById("table");
+	  var resf = document.getElementById("resf");
+	  	  
+var inputFirst = document.getElementById("inputFirst");
+	  var inputSecond = document.getElementById("inputSecond");
+	  var inputThird = document.getElementById("inputThird");
+	  
+	 
+	  
+	  function calc(){
+	  	  var object = new Date();
+	 
+weight= new BigNumber(parseFloat(inputFirst.value));
+height = new BigNumber(parseFloat(inputSecond.value));
+age = new BigNumber (parseFloat(inputThird.value));
+d = inputFourth.value;
+bmr = new BigNumber(0);
+height = height.times(100);
+
+	 if (!isNaN(weight) && !isNaN(height) && !isNaN(age)){
+	if (d == "Male"){
+	 bmr = weight.times(10).plus(height.times(6.25)).minus(age.times(5)).plus(5);}
+ 
+ 
+ else{
+ bmr = weight.times(10).plus(height.times(6.25)).minus(age.times(5)).minus(161);
+ 
+ }
+	 
+	 result.innerHTML = "Your BMR is : <p class = main>" + bmr + " kcal/day</p>"; 
+	 
+var item = weight + ','+ height +',' + age + ',' + d + ')' + bmr+ ")" + object.toLocaleString() + '|';
+	  addHistory(item);   
+resf.className = 'frame active';
+	desc.className = 'frame';	 
+
+	 }}
+
+	 function usea(input){
+	var inputValues = input.split(',');
+	
+inputFirst.value = inputValues[0];
+inputSecond.value = inputValues[1];
+inputThird.value = inputValues[2];
+inputFourth.value = inputValues[3];
+location.href = "#inputFirst";
+calc();
+}
+
+	
+ 	 loadHistory();
+</script>
+
+		</html>

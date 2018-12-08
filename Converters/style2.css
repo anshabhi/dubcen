@@ -1,0 +1,74 @@
+/* Style the buttons that are used to open and close the accordion panel */
+button.accordion {
+    background-color: #eee;
+    font-size: 2rem;
+    line-height: 1.1;
+    font-weight: 300;
+    padding-left: 32px;
+    text-shadow: none;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+button.accordion.active, button.accordion:hover {
+    background-color: #ddd;
+color : white;
+	}
+
+/* Style the accordion panel. Note: hidden by default */
+div.panel {
+    padding: 0 18px;
+    background-color: white;
+    display: none;
+}
+
+/* The "show" class is added to the accordion panel when the user clicks on one of the buttons. This will show the panel content */
+div.panel.show {
+    display: block !important;
+}
+
+
+.big {font-size: 60px; display : inline;}
+.fromHead {top:18% ;  left:0%; position : absolute;}
+.toHead {top:18%; right:50%; position : absolute;}
+.fromVal {top : 23%; left:0%; position:absolute;}
+.from {top : 23%; left:15%; position:absolute;}
+.to {top : 23%; right:10%; position : absolute;}
+.toVal {top : 23%; right:40%; position : absolute; margin : 0; padding : 0; font-size:5vh;}
+.button { height : 100%; width : 100%; border-radius : 20px; background-color :#B82E2E; color : #51BD51;}
+
+td {height : auto; width : auto; margin : 0; padding : 0;}
+.inputTable {top : 60%; left: 0%; position : absolute; height : 40%; width : 20%;}
+.history {top : 74%; left: 00%; position: absolute; width : 100%;}
+.historyT { margin : 0; padding : 0;height : 100%; width : 100%; overflow : scroll; border : 0; }  
+html,body {height :100%; width : 100%; margin:0; padding : 0;}
+.transparent {opacity : 0;}
+td {height : auto; width : auto; text-align : center; margin: 0; padding :0;}
+.input { top : 10%; left : 0%; width : 100%; height : 10%; position: absolute;}
+.navigation{top:9%;left : 0%; height : 8%; width : 100%; position : absolute; transition: 1s ease-out; text-align : center; font-size : 3.5vh; overflow : fixed; opacity : 0; z-index:1;}
+.blank1 {top : 8%; left : 0%; width : 100%; background-color : black; margin : 0; position : absolute; height : 2%; opacity : 0; z-index : 1; color : white;}
+.blank2 {top : 0%; left : 0%; width : 100%; background-color : black; margin : 0; position : absolute; height : 2%; opacity : 0; z-index : 0;}
+
+.inputFirst {top : 12%; left : 5%; position : absolute;}
+.result {top : 15%; left : 5%; position : absolute; color:#51BD51; font-size : 4vh; margin-top:1%; margin: 0 auto;}
+
+.description {top : 48%; left : 0%; position : absolute; height : 25%; width : 100%; overflow-x : hidden; color : #51BD51;  margin:0; padding : 0;}
+.heading {top: 10%; text-align : center; color :  #B82E2E ; left : 0%; height : 100%; width : 100%; position : absolute; transition: 1s ease-out; font-size : 5vh; margin:0; padding : 0;  overflow : fixed; z-index:0;}
+.heading2 {top: 8%;left : 0%; height : 2%; width : 100%; position : absolute; transition: 1s ease-out; font-size : 5vh; margin:0; padding : 0;  overflow : fixed; z-index:2;}
+
+.source {font-style : italic; font-size : 3vh;}
+a { text-decoration : none; color : blue;}
+a:visited {color : blue;}
+
+.working {font-family:seriff; top : 30%; width : 100%; position : absolute; font-size : 3vh; }
+.main { font-style : bold; margin : 0; padding : 0; display : inline; color : gray; text-align:center;}
+img.center {
+    display: block;
+    margin: 0 auto;
+}

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+
+<html>
+<head>
+<link rel = "stylesheet" type = "text/css" href = "style2.css">
+	 <script src="../js/jquery-2.1.3.min.js"></script>
+<link href="../css/metro.css" rel="stylesheet">
+	  
+	  <script src="../js/jquery.dataTables.min.js"></script>
+
+	  <script src="../sweetalert-master/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../sweetalert-master/dist/sweetalert.css">
+	 	 <script src = "../scripts/bignumber.min.js"></script>
+<title> DubCen Unit Converters</title>
+
+</head>
+
+<body onload = "start()">
+<h1 style = "text-align:center; color : gold;"> DubCen Converters</h1>
+	<h3><a href = "index.html" class = "heading2" style = "cursor : pointer; display : inline;">Back</a></h3> 
+
+<h1 style = "color : #FF8243; display : inline;" id = "heading" class = "heading"></h1>
+	</h1><div class = "navigation" id = "navigation">
+
+<select id = "mySelect" onchange="loadOptions()">
+  <option>Acceleration </option>
+ <option >Area</option>   
+  
+   <option >Density</option>
+	    
+		<option >Energy & Work </option>
+		<option> Force </option>
+		 <option >Memory</option>
+          <option >Length</option>		
+		<option >Memory Rate</option>
+							    <option >Speed</option>
+								<option >Temperature</option>
+								<option >Volume</option>
+											  <option >Weight & Mass</option>
+  <option>Acceleration (angular)</option>
+  
+  <option>Angle</option>
+   
+  <option>Magnetic Field</option>
+    <option>Concentration</option> 
+		  
+			  <option>Illumination</option>
+
+				<option>Magnetic Flux</option>
+				  <option>Moment of Inertia</option>
+				  <option>Momentum</option>
+				  
+				  <option>Power</option>
+				    <option>Pressure</option>
+					<option >Resistance</option>
+						    <option>Resistivity</option>
+							  
+								  <option>Speed - Angular</option>
+								    
+									  <option>Time</option>
+								<option>Charge</option>
+										  
+										    
+</select></div>
+
+<div class = "blank1" ></div>
+
+<div class = "fromHead">From:</div><div class = "toHead">To:</div>
+
+<input id = "fromVal" onchange = "calc()" type = "number" class = "fromVal" value = 1> 
+
+<div id = "input" class = "from" >
+</div> <p id = "toVal" class = "toVal"></p>
+
+<div id ="output" class = "to">
+</div>
+<div class = "working">
+<button class="accordion"style = "background-color : aqua;">Conversion Factor</button>
+<div class = "panel">
+	 <p id = "working"></p>
+</div></div>
+<div class = "description">
+<button class="accordion" style = "background-color :#ADFF2F;">Description</button>
+<div class = "panel" >
+<div id = "description">
+
+		<p class=  "source" id = "source">This converter can convert 27 quantities and over 1000 units.</p>
+	 <p style = "font-size:20px;"> This converter works by "making units". For example,
+	 Speed = Distance/Time . So you can limitlessly divide any of the Length units with any of the Time Units to obtain your required unit. 
+	The first field in every unit is reserved for "prefixes". That is kilo, centi, milli etc. You can chose prefixes from 
+	 googol (10<sup>100</sup>) to upto yocto (10<sup>-24</sup>). Prefix apply only to the first unit in a quantity.
+	 <br><br>
+	 For units such as Pressure, Volume where individual units are more commonly used than derived units, this converter uses such individual units.
+	 </div>
+</div></div>
+<br>
+<div class = "history">
+<button class="accordion" style = "background-color : yellow;">History</button>
+<div class="panel">
+
+<div id = "historyDiv">
+	 <p id = "historyMsg"><input type = "button" class = "clear" onclick = "clearHistory()" value = "CLear ALL"></p>
+	 <table id = "table" class = "historyT">
+	 </table>
+	 </div>
+	 </div></div>
+	 </body>
+	 <script src = "../scripts/bignumber.min.js"></script>
+<script type="text/javascript">
+
+/* Toggle between adding and removing the "active" and "show" classes when the user clicks on one of the "Section" buttons. The "active" class is used to add a background color to the current button when its belonging panel is open. The "show" class is used to open the specific accordion panel */
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+    acc[i].onclick = function(){
+        this.classList.toggle("active");
+        this.nextElementSibling.classList.toggle("show");
+    }
+}
+
+</script>
+
+<script src = "quantities.js">
+</script>
+
+<script src = "converter.js">
+</script>
+
+
+	</html>

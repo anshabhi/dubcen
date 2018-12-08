@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> DubCen Calculator and Converter </title>
+<link href="css/metro.css" rel="stylesheet">
+    <link href="css/metro-icons.css" rel="stylesheet">
+    <link href="css/metro-responsive.css" rel="stylesheet">
+    <link href="css/metro-schemes.css" rel="stylesheet">
+    <link href="css/icons.css" rel="stylesheet">
+     <link href="css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="sweetalert-master/dist/sweetalert.css">
+<script src="sweetalert-master/dist/sweetalert.min.js"></script>
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/metro.js"></script>
+	<style>
+	.tabs {color : red;}
+	.tile-square{background-color : white; width : 140px; height : 140px;}
+	
+	 .tile, .tile-small, .tile-square, .tile-wide, .tile-large, .tile-big, .tile-super {
+            opacity: 0;
+            -webkit-transform: scale(.8);
+            transform: scale(.8);
+			padding : 10px;
+        }
+
+	</style>
+	<script>
+	var tabs = document.getElementById("tabs");
+	    (function($) {
+            $.StartScreen = function(){
+                var plugin = this;
+                var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+
+                plugin.init = function(){
+                    setTilesAreaSize();
+                    if (width > 640) addMouseWheel();
+                };
+
+                var setTilesAreaSize = function(){
+                    var groups = $(".tile-group");
+                    var tileAreaWidth = 80;
+                    $.each(groups, function(i, t){
+                        if (width <= 640) {
+                            tileAreaWidth = width;
+                        } else {
+                            tileAreaWidth += $(t).outerWidth() + 80;
+                        }
+                    });
+                    $(".tile-area").css({
+                        width: tileAreaWidth
+                    });
+                };
+
+                var addMouseWheel = function (){
+                    $("body").mousewheel(function(event, delta, deltaX, deltaY){
+                        var page = $(document);
+                        var scroll_value = delta * 50;
+                        page.scrollLeft(page.scrollLeft() - scroll_value);
+                        return false;
+                    });
+                };
+
+                plugin.init();
+            }
+        })(jQuery);
+
+        $(function(){
+            $.StartScreen();
+
+            var tiles = $(".tile, .tile-small, .tile-square, .tile-wide, .tile-large, .tile-big, .tile-super");
+
+            $.each(tiles, function(){
+                var tile = $(this);
+                setTimeout(function(){
+                    tile.css({
+                        opacity: 1,
+                        "-webkit-transform": "scale(1)",
+                        "transform": "scale(1)",
+                        "-webkit-transition": ".3s",
+                        "transition": ".3s"
+                    });
+                }, Math.floor(Math.random()*500));
+            });
+			 $(".tile-group").animate({
+                left: 0
+            });
+        });
+		
+		function navigate(a){
+sessionStorage['location'] = location.href;
+window.location = a + '.html';
+}
+
+function unitNav(a){
+sessionStorage['200'] = a;
+sessionStorage['location'] = location.href;
+window.location = 'Converters/index2.html';}
+			</script></head>
+
+	<body onload = "check()">
+
+	<div class="app-bar" data-role="appbar">
+
+                    <a class="app-bar-element branding" style = "color:gold; font-size:5vh;">DubCen</a>
+
+                    <ul class="app-bar-menu">
+                        <li data-flexorderorigin="0" data-flexorder="1">
+						 <a href="" class="dropdown-toggle">Date & Time</a>
+                            <ul class="d-menu" data-role="dropdown" style="display: none;">
+                                <li><a href="Date & Time/Age.html">Age Calculator</a></li>
+                                <li><a href="Date & Time/Countdown.html">Countdown</a></li>
+                                <li><a href="Date & Time/Date Finder.html">Date Finder</a></li>
+								<li><a href="Date & Time/Stopwatch.html">Stopwatch</a></li>
+
+                                <li><a href="Date & Time/Time Zone Converter.html">Time Zone Converter</a></li>
+                                                                  
+                                </li>
+                            </ul>
+						
+						
+                        <li data-flexorderorigin="1" data-flexorder="2" class="">
+                            <a href="" class="dropdown-toggle">Finance</a>
+                            <ul class="d-menu" data-role="dropdown" style="display: none;">
+                                <li><a href="Finance/Activity Method Of Depriciation.html">Activity Method Of Depriciation</a></li>
+                                <li><a href="Finance/Amortization.html">Amortization Calculator</a></li>
+                                <li><a href="Finance/Bid-Ask.html">Bid-Ask Calculator</a></li>
+                                <li><a href="Finance/CAGR.html">Compound Annual Growth Rate</a></li>
+                                <li><a href="Finance/Early Payoff.html">Early Payoff Calculator</a></li>
+								<li><a href="Finance/Save Some Amount.html">Save Some Amount Calculator</a></li>
+
+							   <li class="divider"></li>
+                                <li class="active-container"><a href="" class="dropdown-toggle">More</a>
+                                    <ul class="d-menu" data-role="dropdown" style="display: none;">
+                                        <li><a href = "Finance/Discount Factor.html">Discount Factor Calculator</a></li>
+                                        <li><a href="Finance/Future Value.html">Future Value Calculator</a></li>
+                                        <li><a href="Finance/Income(Hourly).html">Hourly Income Calculator</a></li>
+									<li><a href="Finance/Retirement.html">Retirement Calculator</a></li>
+                                        <li><a href="Finance/Stock.html">Stock Calculator</a></li>
+
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li data-flexorderorigin="2" data-flexorder="3">
+						<a href="" class="dropdown-toggle">Fun</a>
+                            <ul class="d-menu" data-role="dropdown" style="display: none;">
+                                <li><a href="Fun/Animal Age.html">Animal Age Calculator</a></li>
+                                <li><a href="Fun/Astrological.html">Astrological Calculator</a></li>
+                                <li><a href="Fun/Encryptor.html">Data Encryptor</a></li>
+                                <li><a href="Fun/Decryptor.html">Data Decryptor</a></li>
+																<li><a href="Fun/Love.html">Love Calculator</a></li>
+							   <li class="divider"></li>
+                                <li class="active-container"><a href="" class="dropdown-toggle">More</a>
+                                    <ul class="d-menu" data-role="dropdown" style="display: none;">
+									                                <li><a href="Fun/Lightning Distance.html">Lightning Distance Calculator</a></li>
+                                <li><a href="Fun/Story Maker.html">Random Story Maker</a></li>
+                                <li><a href="Fun/Zen Button.html">Zen Button</a></li>
+</ul>
+                                </li>
+                            </ul>
+						</li>
+                        <li data-flexorderorigin="3" data-flexorder="4">
+						<a href="" class="dropdown-toggle">Health</a>
+                            <ul class="d-menu" data-role="dropdown" style="display: none;">
+                                <li><a href="Health/Basal Metabolic Rate.html">Basal Metabolic Rate</a></li>
+                                <li><a href="Health/Blood Volume">Blood Volume Calculator</a></li>
+                                <li><a href="Health/Body Mass Index.html">Body Mass Index</a></li>
+                                <li><a href="Health/Body Surface Area.html">Body Surface Area</a></li>
+							   <li class="divider"></li>
+                                <li class="active-container"><a href="" class="dropdown-toggle">More</a>
+                                    <ul class="d-menu" data-role="dropdown" style="display: none;">
+									                                <li><a href="Health/Cost Of Smoking.html">Cost Of Smoking Calculator</a></li>
+                                <li><a href="Health/Pregnancy.html">Pregnancy Calculator</a></li>
+</ul>
+                                </li>
+                            </ul>
+						</li>
+						                        <li data-flexorderorigin="4" data-flexorder="5">
+											<a href="" class="dropdown-toggle">Maths</a>
+                            <ul class="d-menu" data-role="dropdown" style="display: none;">
+                                <li><a href="Maths/AP.html">Arithmetic Progression Calculator</a></li>
+								<li><a href="Maths/Circle.html">Circle Calculator</a></li>
+                                <li><a href="Maths/Complex Numbers.html">Complex Numbers Calculator</a></li>
+                                <li><a href="Maths/Fibonacci.html">Fibonacci Series Calculator</a></li>
+                                <li><a href="Maths/Heron Formula.html">Heron's Formula Calculator</a></li>
+                                <li><a href="Maths/Quadratic Equation.html">Quadratic Equation Calculator</a></li>
+                                <li><a href="Maths/Statistics.html">Statistics Calculator</a></li>
+							   <li class="divider"></li>
+                                <li class="active-container"><a href="" class="dropdown-toggle">More</a>
+                                    <ul class="d-menu" data-role="dropdown" style="display: none;">
+		        <li><a href="Maths/Angle Bisector.html">Angle Bisector Calculator</a></li>
+                                <li><a href="Maths/Circle Sector.html">Circle Sector Calculator</a></li>
+                                 <li><a href="Maths/Cone.html">Cone Calculator</a></li>
+                                <li><a href="Maths/Polygon.html">Polygon Calculator</a></li>
+
+</ul>
+                                </li>
+                            </ul>							
+												
+												
+												</li>
+
+											<li data-flexorderorigin="5" data-flexorder="6">
+											<a href="" class="dropdown-toggle">Miscellaneous</a>
+                            <ul class="d-menu" data-role="dropdown" style="display: none;">
+                                <li><a href="Miscellaneous/CHmod.html">CHmod Calculator</a></li>
+								 <li><a href="Miscellaneous/Color Wheel.html">Color Wheel</a></li>
+                                <li><a href="Miscellaneous/Shoe Size Converter.html">Shoe Size Converter</a></li>
+                                <li><a href="Miscellaneous/Sorter.html">Data Sorter</a></li>
+                                <li><a href="Miscellaneous/URL.html">URL Revealer</a></li>
+
+							  
+                            </ul>							
+													</li>	
+													
+														<li data-flexorderorigin="6" data-flexorder="7">
+											<a href="" class="dropdown-toggle">Science</a>
+                            <ul class="d-menu" data-role="dropdown" style="display: none;">
+                                <li><a href="Science/Altitude Pressure.html">Altitude Pressure</a></li>
+                                <li><a href="Science/Dew Point.html">Dew Point Calculator</a></li>
+                                <li><a href="Science/Molecular Weight.html">Molecular Weight Calculator</a></li>
+                                <li><a href="Science/Periodic Table.html">Periodic Table</a></li>
+								<li><a href="Science/Radioactivity.html">Radioactivity Calculator</a></li>
+                                <li><a href="Science/Sound Speed.html">Sound Speed Calculator</a></li>
+														
+
+							  
+                            </ul>							
+													</li>
+													<li data-flexorderorigin="7" data-flexorder="8">
+<a href = "Converters/index.html">Unit Converters</a></li>
+								
+<li data-flexorderorigin="8" data-flexorder="9">
+<a onclick = "favLoad()">Favourites</a></li>													
+                    </ul>
+
+                <div class="app-bar-pullbutton automatic" style="display: none;"></div><div class="clearfix" style="width: 0;"></div><nav class="app-bar-pullmenu hidden flexstyle-app-bar-menu" style="display: none;"><ul class="app-bar-pullmenubar hidden app-bar-menu"></ul></nav></div>
+	
+                                                            <div class="frame" id="frame_1">
+								<div class = "tile-group">
+								<div class="tile-square " onclick = "navigate('Finance/Amortization')"   style = "color : #44A3FF;">
+    <div class="tile-content iconic">
+            
+                <span class = "icon icon-calendar-3 ani-hover-float"></span>
+          
+            <div class="tile-label" >
+                Amortization
+            </div>
+    </div>
+</div>
+<div class="tile-square "   onclick = "navigate('Health/Body Mass Index')" style = "color : #FF0000;">
+    <div class="tile-content iconic">
+            
+                <span class = "icon fa fa-heart ani-hover-heartbeat"></span>
+          
+            <div class="tile-label">
+                Body Mass Index
+            </div>
+    </div>
+</div>
+
+
+
+
+                                <div class="tile-square" onclick = "navigate('Date & Time/Age')"  style = "color : #00CED1;">
+    <div class="tile-content iconic">
+    <span class = "icon icon-clock-2 ani-hover-spanner"></span>
+       <div class="tile-label">
+        Age </div> </div></div>
+<div class="tile-square "    onclick = "navigate('Fun/Love')" style = "color : #FF1493;">
+    <div class="tile-content iconic">
+ <span class = "icon icon-bubbles ani-hover-shuttle"></span>
+<div class="tile-label">
+Love 
+</div>
+</div>
+</div>
+<div class="tile-square " onclick = "unitNav('209')"  style = "color : #778899;">
+    <div class="tile-content iconic">
+ <span class = "icon icon-spinner-3 ani-hover-spin"></span>
+<div class="tile-label">
+Speed Converter
+</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "navigate('Finance/Early Payoff')" style = "color : #FFC062;">
+    <div class="tile-content iconic">
+ <span class = "icon icon- icon-address-book-2 ani-hover-pulse"></span>
+<div class="tile-label">
+Early Payoff</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "navigate('Miscellaneous/Sorter')" style = "color : #F4A460;">
+    <div class="tile-content iconic">
+ <span class = "icon fa fa-sort ani-hover-vertical"></span>
+<div class="tile-label">
+Data Sorter
+</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "unitNav('212')" style = "color : #4682B4;">
+    <div class="tile-content iconic">
+ <span class = "icon fa fa-balance-scale ani-hover-shake"></span>
+<div class="tile-label">
+Weight Converter
+</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "navigate('Science/Molecular Weight')" style = "color : #8B008B;">
+    <div class="tile-content iconic">
+ <span class = "icon  icon-atom   ani-hover-ripple"></span>
+<div class="tile-label">
+Molecular Weight
+</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "navigate('Maths/Quadratic Equation')"  style = "color : #00FF7F;">
+    <div class="tile-content iconic">
+ <span class = "icon fa fa-superscript ani-hover-horizontal"></span>
+<div class="tile-label">
+Quadratic Equation</div>
+</div>
+</div>
+<div class="tile-square "    onclick = "navigate('Health/Blood Alcohol Content')" style = "color : #FF8243;">
+    <div class="tile-content iconic">
+ <span class = "icon icon-droplets ani-hover-pulse"></span>
+<div class="tile-label">
+Blood Alcohol Content</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "navigate('Maths/Complex Numbers')" style = "color : #1CAC78;">
+    <div class="tile-content iconic">
+ <span class = "icon fa fa-info ani-hover-spanner"></span>
+<div class="tile-label">
+Complex Numbers</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "unitNav('207')" style = "color : #FFC82E;">
+    <div class="tile-content iconic">
+ <span class = "icon fa fa-arrows-h ani-hover-pass"></span>
+<div class="tile-label">
+Length Converter
+</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "navigate('Fun/Story Maker')" style = "color : #D2B48C;">
+    <div class="tile-content iconic">
+ <span class = "icon fa fa-pencil ani-hover-flash"></span>
+<div class="tile-label">
+Story Maker
+</div>
+</div>
+</div>
+  <div class="tile-square "   onclick = "navigate('Date & Time/Date Finder')" style = "color : #7FFF00;">
+  <div class="tile-content iconic">
+  <span class = "icon fa fa-calendar-plus-o ani-hover-spanner"></span>
+<div class="tile-label">
+Dates Finder 
+</div>
+    </div>
+</div>
+<div class="tile-square "   onclick = "navigate('Health/Basal Metabolic Rate')" style = "color : #FF4848;">
+    <div class="tile-content iconic">
+ <span class = "icon fa fa-user-md ani-hover-shuttle"></span>
+<div class="tile-label">
+Basal Metabolic Rate 
+</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "navigate('Fun/Animal Age')" style = "color : #87CEFA;">
+    <div class="tile-content iconic">
+ <span class = "icon fa fa-hand-lizard-o ani-hover-spin"></span>
+<div class="tile-label">
+Animal Age 
+</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "navigate('Health/Blood Volume')" style = "color : #FFC062;">
+    <div class="tile-content iconic">
+ <span class = "icon icon-droplet-2 ani-hover-pulse"></span>
+<div class="tile-label">
+Blood Volume 
+</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "navigate('Maths/AP')" style = "color : #66CDAA;">
+    <div class="tile-content iconic">
+ <span class = "icon fa fa-signal ani-hover-vertical"></span>
+<div class="tile-label">
+Arithmetic Progression</div>
+</div>
+</div>
+<div class="tile-square "    onclick = "navigate('Miscellaneous/CHmod')" style = "color : #7B68EE;">
+    <div class="tile-content iconic">
+ <span class = "icon fa fa-sliders ani-hover-shake"></span>
+<div class="tile-label">
+CHmod
+</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "navigate('Science/Altitude Pressure')"  style = "color : #8B008B;">
+    <div class="tile-content iconic">
+ <span class = "icon fa fa-level-up ani-hover-ripple"></span>
+<div class="tile-label">
+Altitude Pressure
+</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "navigate('Maths/Angle Bisector')" style = "color : #00FF7F;">
+    <div class="tile-content iconic">
+ <span class = "icon  icon-flow-line ani-hover-horizontal"></span>
+<div class="tile-label">
+Angle Bisector</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "navigate('Finance/Bid-Ask')"  style = "color : #FF8243;">
+    <div class="tile-content iconic">
+ <span class = "icon fa fa-money ani-hover-pulse"></span>
+<div class="tile-label">
+Bid-Ask</div>
+</div>
+</div>
+<div class="tile-square "    onclick = "navigate('Fun/Astrological')" style = "color : #FF9F94;">
+    <div class="tile-content iconic">
+ <span class = "icon fa fa-star ani-hover-spanner"></span>
+<div class="tile-label">
+Astrological Signs</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "navigate('Maths/Circle Sector')" style = "color : #FFC82E;">
+    <div class="tile-content iconic">
+ <span class = "icon icon-pie ani-hover-pass"></span>
+<div class="tile-label">
+Circle Sector
+</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "navigate('Maths/Circle')" style = "color : #4169E1;">
+    <div class="tile-content iconic">
+ <span class = "icon fa fa-circle-o ani-hover-flash"></span>
+<div class="tile-label">
+Circle
+</div>
+</div>
+</div>
+
+<div class="tile-square "   onclick = "navigate('Finance/CAGR')" style = "color : #4169E1;">
+  <div class="tile-content iconic">
+  <span class = "icon  icon-progress-3   ani-hover-spanner"></span>
+<div class="tile-label">
+CAGR
+</div>
+    </div>
+</div>
+  
+<div class="tile-square "   onclick = "navigate('Maths/Cone')" style = "color : #FF69B4;">
+    <div class="tile-content iconic">
+ <span class = "icon icon-cone-2 ani-hover-shuttle"></span>
+<div class="tile-label">
+Cone
+</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "navigate('Finance/Discount Factor')" style = "color : #00CAD1;">
+    <div class="tile-content iconic">
+ <span class = "icon fa fa-percent ani-hover-spin"></span>
+<div class="tile-label">
+Discount Factor
+</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "navigate('Maths/Fibonacci')" style = "color : #FFC062;">
+    <div class="tile-content iconic">
+ <span class = "icon icon-arrow-2 ani-hover-pulse"></span>
+<div class="tile-label">
+Fibonacci Series 
+</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "navigate('Miscellaneous/Color Wheel')" style = "color : #DB7093;">
+    <div class="tile-content iconic">
+ <span class = "icon fa fa-cog ani-hover-spin"></span>
+<div class="tile-label">
+Color Wheel</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "navigate('Science/Dew Point')" style = "color : #D2B48C;">
+    <div class="tile-content iconic">
+ <span class = "icon icon-droplet-3 ani-hover-shake"></span>
+<div class="tile-label">
+Dew Point
+</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "navigate('Finance/Future Value')" style = "color : #F08080;">
+    <div class="tile-content iconic">
+ <span class = "icon fa fa-line-chart ani-hover-ripple"></span>
+<div class="tile-label">
+Future Value
+</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "navigate('Maths/Heron Formula')" style = "color : #00FF7F;">
+    <div class="tile-content iconic">
+ <span class = "icon icon-flip-2 ani-hover-horizontal"></span>
+<div class="tile-label">
+Heron's Formula</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "navigate('Finance/Income(Hourly)')" style = "color : #FF8243;">
+    <div class="tile-content iconic">
+ <span class = "icon icon-user-6 ani-hover-pulse"></span>
+<div class="tile-label">
+Income Hourly</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "navigate('Maths/Polygon')" style = "color : #FF9F94;">
+    <div class="tile-content iconic">
+ <span class = "icon icon-checkbox-unchecked ani-hover-spanner"></span>
+<div class="tile-label">
+Polygon</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "navigate('Finance/Retirement')" style = "color : #FFC82E;">
+    <div class="tile-content iconic">
+ <span class = "icon  icon-accessibility ani-hover-pass"></span>
+<div class="tile-label">
+Retirement
+</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "navigate('Maths/Statistics')" style = "color : #ADFF2F;">
+    <div class="tile-content iconic">
+ <span class = "icon icon-bars-3 ani-hover-flash"></span>
+<div class="tile-label">
+Statistics
+</div>
+</div>
+</div>
+
+<div class="tile-square "   onclick = "navigate('Date & Time/Countdown')" style = "color : #7FFF00;">
+    <div class="tile-content iconic">
+ <span class = "icon fa fa-clock-o ani-hover-flash"></span>
+<div class="tile-label">
+Countdown
+</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "navigate('Date & Time/Time Zone Converter')" style = "color : #87CEFA;">
+    <div class="tile-content iconic">
+ <span class = "icon icon-earth-3 ani-hover-flash"></span>
+<div class="tile-label">
+Time Zone Converter
+</div>
+</div>
+</div><div class="tile-square "   onclick = "navigate('Date & Time/Stopwatch')" style = "color : #E61D00;">
+    <div class="tile-content iconic">
+ <span class = "icon icon-meter ani-hover-flash"></span>
+<div class="tile-label">
+Stopwatch
+</div>
+</div>
+</div>
+
+                                <div class="tile-square "   onclick = "navigate('Finance/Save Some Amount')" style = "color : #00CED1;">
+    <div class="tile-content iconic">
+    <span class = "icon fa fa-usd ani-hover-spanner"></span>
+       <div class="tile-label">
+        Save Some Amount </div> </div></div>
+<div class="tile-square "   onclick = "navigate('Fun/Lightning Distance')" style = "color : #FF1493;">
+    <div class="tile-content iconic">
+ <span class = "icon icon-lightning ani-hover-shuttle"></span>
+<div class="tile-label">
+Lightning Distance 
+</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "navigate('Health/Body Surface Area')" style = "color : #778899;">
+    <div class="tile-content iconic">
+ <span class = "icon fa fa-medkit ani-hover-spin"></span>
+<div class="tile-label">
+Body Surface Area
+</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "navigate('Science/Radioactivity')" style = "color : #FFC062;">
+    <div class="tile-content iconic">
+ <span class = "icon icon-target ani-hover-pulse"></span>
+<div class="tile-label">
+Radioactivity
+</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "navigate('Miscellaneous/URL')" style = "color : #F4A460;">
+    <div class="tile-content iconic">
+ <span class = "icon fa fa-link ani-hover-vertical"></span>
+<div class="tile-label">
+URL Unobfuscater</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "navigate('Health/Pregnancy')" style = "color : #4682B4;">
+    <div class="tile-content iconic">
+ <span class = "icon fa fa-child ani-hover-shake"></span>
+<div class="tile-label">
+Pregnancy
+</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "navigate('Science/Sound Speed')" style = "color : #8B008B;">
+    <div class="tile-content iconic">
+ <span class = "icon icon-sound ani-hover-ripple"></span>
+<div class="tile-label">
+Sound Speed
+</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "navigate('Fun/Zen Button')" style = "color : #00FF7F;">
+    <div class="tile-content iconic">
+ <span class = "icon icon-happy ani-hover-horizontal"></span>
+<div class="tile-label">
+Zen Button</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "navigate('Finance/Stock')" style = "color : #FF8243;">
+    <div class="tile-content iconic">
+ <span class = "icon fa fa-hand-rock-o ani-hover-pulse"></span>
+<div class="tile-label">Stock
+</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "navigate('Finance/Activity method of depriciation')" style = "color : #1CAC78;">
+    <div class="tile-content iconic">
+ <span class = "icon icon-wind ani-hover-spanner"></span>
+<div class="tile-label">
+Activity Method of Depriciation</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "unitNav('201')" style = "color : #FFC82E;">
+    <div class="tile-content iconic">
+ <span class = "icon fa fa-car ani-hover-pass"></span>
+<div class="tile-label">
+Acceleration Converter
+</div>
+</div>
+</div>
+<div class="tile-square "   onclick = "unitNav('202')" style = "color : #D2B48C;">
+    <div class="tile-content iconic">
+ <span class = "icon  icon-checkbox-partial ani-hover-flash"></span>
+<div class="tile-label">
+Area Converter
+</div>
+</div>
+</div>
+
+<div class="tile-square"   onclick = "unitNav('203')" data-role="tile" style = "color:#FFC200;">
+<div class="tile-content iconic"><span class="icon fa fa-cubes"></span><div class="tile-label">
+Density Converter
+</div></div></div>
+<div class="tile-square "   onclick = "unitNav('204')" data-role="tile" style = "color:#ADFF2F;">
+<div class="tile-content iconic"><span class="icon  icon-rocket"></span><div class="tile-label">
+Work & Energy</div></div></div>
+<div class="tile-square "   onclick = "unitNav('205')" data-role="tile" style = "color:#0000FF";>
+<div class="tile-content iconic"><span class="icon  icon-dashboard"></span><div class="tile-label">
+Force Converter </div></div></div>
+<div class="tile-square "   onclick = "unitNav('206')" data-role="tile" style = "color:#FF7F50";>
+<div class="tile-content iconic"><span class="icon  icon-monitor"></span><div class="tile-label">
+Memory Converter </div></div></div><div class="tile-square "   onclick = "unitNav('208')" data-role="tile" style = "color:#D2691E";>
+<div class="tile-content iconic"><span class="icon  icon-network  "></span><div class="tile-label">
+Memory Rate Converter </div></div></div><div class="tile-square "   onclick = "unitNav('210')" data-role="tile" style = "color:#DC143C";>
+<div class="tile-content iconic"><span class="icon  icon-thermometer"></span><div class="tile-label">
+Temperature Converter </div></div></div><div class="tile-square "   onclick = "unitNav('211')" data-role="tile" style = "color:#00E7EA";>
+<div class="tile-content iconic"><span class="icon  icon-glass"></span><div class="tile-label">
+Volume Converter </div></div></div>
+<div class="tile-square "   onclick = "unitNav('213')" data-role="tile" style = "color:#FF1493";>
+<div class="tile-content iconic"><span class="icon  icon-support"></span><div class="tile-label">
+Angular Acceleration </div></div></div>
+<div class="tile-square "   onclick = "unitNav('214')" data-role="tile" style = "color:#00E7EA";>
+<div class="tile-content iconic"><span class="icon fa fa-circle-o-notch"></span><div class="tile-label">
+Angle Converter </div></div></div>
+<div class="tile-square "   onclick = "unitNav('215')" data-role="tile" style = "color:#696969";>
+<div class="tile-content iconic"><span class="icon  icon-magnet "></span><div class="tile-label">
+Magnetic Field </div></div></div>
+<div class="tile-square "   onclick = "unitNav('217')" data-role="tile" style = "color:#FFD700";>
+<div class="tile-content iconic"><span class="icon  icon-light-bulb"></span><div class="tile-label">
+Illumination </div></div></div>
+<div class="tile-square "   onclick = "unitNav('218')" data-role="tile" style = "color:#7CFC00";>
+<div class="tile-content iconic"><span class="icon  icon-air"></span><div class="tile-label">
+Magnetic Flux </div></div></div><div class="tile-square "   onclick = "unitNav('220')" data-role="tile" style = "color:#FFA500";>
+<div class="tile-content iconic"><span class="icon fa fa-truck"></span><div class="tile-label">
+Momentum </div></div></div>
+<div class="tile-square "   onclick = "unitNav('219')" data-role="tile" style = "color:#7B68EE";>
+<div class="tile-content iconic"><span class="icon fa fa-cube"></span><div class="tile-label">
+Moment of Inertia </div></div></div><div class="tile-square "   onclick = "unitNav('221')" data-role="tile" style = "color:#FF4500";>
+<div class="tile-content iconic"><span class="icon fa fa-subway"></span><div class="tile-label">
+Power </div></div></div><div class="tile-square "   onclick = "unitNav('222')" data-role="tile" style = "color:#4682B4";>
+<div class="tile-content iconic"><span class="icon icon-thermometer-2"></span><div class="tile-label">
+Pressure </div></div></div>
+<div class="tile-square "   onclick = "unitNav('225')" data-role="tile" style = "color:#4682B4";>
+<div class="tile-content iconic"><span class="icon icon-cog-2"></span><div class="tile-label">
+Angular Speed </div></div></div><div class="tile-square "   onclick = "unitNav('226')" data-role="tile" style = "color:#999900";>
+<div class="tile-content iconic"><span class="icon icon-clock-6"></span><div class="tile-label">
+Time</div></div></div>
+</div>
+
+
+
+
+
+                                   </div>
+			  <div data-role="dialog" id="favdialog" class="padding20" data-close-button="false" data-overlay="true" data-overlay-color="op-dark" data-overlay-click-close="true">
+            <h1 style = "color:yellow;"> Favourites </h1>
+<div id = "favtable"></div>   
+   </div>
+																
+								
+						
+								</body>
+								
+								<script>
+var current = new Date();
+
+								
+								function check(){
+
+
+
+hour = parseFloat(current.getHours());
+if (!sessionStorage['flag2']){
+
+ if (hour>=5 && hour <12){
+ swal({   title: "Good Morning!",   text: "Welcome back to DubCen",   imageUrl: "morning.png" });}
+ 
+ else if (hour >= 12 && hour < 17)
+ swal({   title: "Good Afternoon!",   text: "Welcome back to DubCen",   imageUrl: "afternoon.png" });
+ 
+ else
+swal({   title: "Good Evening!",   text: "Welcome back to DubCen",   imageUrl: "evening.png" });
+ sessionStorage['flag2'] = 1;
+}}
+
+function favLoad(){
+var storedfav = JSON.parse(localStorage.getItem("fav"));
+	var msg;
+	if (storedfav.length == 0){
+	msg = "Your Favourites Appear Here!<br> Press the star icon <span class = 'icon icon-star-4'></span> To add a favourite";
+	
+}
+	else {
+tabEle = "<table id='favtable' class='dataTable striped border bordered data-role='datatable' data-searching='true''><thead><tr><td>SR. NO</td><td>Name</td></tr></thead><tfoot><tr><td>SR. NO</td><td>Name</td></tr></tfoot><tbody>";
+
+		for (i=0; i<storedfav.length;i++)
+	   {
+	var favs = storedfav[i].split(',');
+    
+	index = i;
+tabEle+= "<tr><td>" + (i+1) + "</td><td><a href = " + favs[1] +">"+ favs[0] + "</a></td></tr>"  ;
+	   }tabEle+= "</tbody></table>";}
+	   var favtable = document.getElementById("favtable");
+	   favtable.innerHTML= tabEle;
+showMetroDialog('#favdialog');	   
+	   
+
+}
+</script>
+	
+	
+
+								</html>

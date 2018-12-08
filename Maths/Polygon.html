@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> DubCen Polygon Calculator</title>
+<link href="../css/metro.css" rel="stylesheet">
+    <link href="../css/metro-icons.css" rel="stylesheet">
+    <link href="../css/metro-responsive.css" rel="stylesheet">
+    <link href="../css/metro-schemes.css" rel="stylesheet">
+    <link href="../css/icons.css" rel="stylesheet">
+	    <link href="../style2.css" rel="stylesheet">
+
+     <link href="../css/font-awesome.css" rel="stylesheet">
+	  <script src="../sweetalert-master/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../sweetalert-master/dist/sweetalert.css">
+	 <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/metro.js"></script>
+	    <script src="../js/jquery.dataTables.min.js"></script>
+		<script src = "../common - Copy.js"></script>
+	 	 <script src = "../scripts/bignumber.min.js"></script>
+
+	</head>
+	<body>
+   
+	<h1 id = "header" style = "text-align:center; color : gold;"> DubCen</h1>
+	<h1 style = "color : #FF9F94;"><a onclick = "navigate()" class="nav-button transform"><span></span></a> Polygon
+	<span class = "icon icon-checkbox-unchecked"></span>
+	</h1>
+		
+		<div class="example margin20" data-text="input">
+            <div class="grid">
+                
+                <div class="row cells1">
+                    <div class="cell">
+					<form onchange = "calc()" id = "inputForm">
+               <div class="input-control info"  >
+    <input type="text" placeholder = "Total Number of Sides (N)" id = "inputFirst" required>
+</div>        OR       <div class="input-control info"  >
+    <input type="text" placeholder = "Exterior Angle (E in &deg;)" id = "inputSecond" required>
+</div>OR
+<div class="input-control info"  >
+    <input type="text" placeholder = "Interior Angle (I in &deg;)" id = "inputThird" required>
+</div>
+</form>
+                            
+                        </div>
+                </div>
+                
+            </div>
+        </div>   </div>     
+		<div class="accordion large-heading" data-role="accordion" data-close-any="false">
+                            <div class="frame" id = "resf"  >
+                                <div class="heading" style = "background-color:#40E0D0">Result<span class = "icon fa fa-laptop"></span></div>
+                                <div class="content info result">
+<div class="example" data-text="output" id = "result"> Waiting for Input!
+</div>                                </div>
+                            </div>
+                            <div class="frame active" id = "desc"  >
+                                <div class="heading" style = "background-color:#7FFF00;">Description
+																<span class = "icon  icon-info"></span>
+
+								</div>
+                                <div class="content">
+              <div class="example" data-text="description"> 
+			  
+				 <p class = "source">For a regular polygon, sum of interior angles is (n-2)*180&deg; and sum of exterior angles is always 360&deg; </p>
+
+</div> 
+                         
+			  </div>
+                            </div>
+                            <div class="frame"  >
+                                <div class="heading" style = "background-color:#FFFF00;;">History                   
+								<span class = "icon  icon-database"></span>
+</div>
+                                <div class="content" id = "historyDiv">
+		 
+           
+         
+                                </div>
+                            </div>
+                        </div>
+		</body>
+		<script>
+	  var id = '715';
+	  if (localStorage[id] == undefined)
+	  localStorage[id] = "";
+      var table = document.getElementById("table");
+	  var resf = document.getElementById("resf");
+	  	  var inputFirst = document.getElementById("inputFirst");
+	  var inputSecond = document.getElementById("inputSecond");
+	  var inputThird = document.getElementById("inputThird");
+	var result = document.getElementById("result");
+	  
+	  BigNumber.config({ DECIMAL_PLACES: 4 });
+	  
+	 function calc(){
+	 	  var object = new Date();
+
+ 	 var inputFirst  = document.getElementById ("inputFirst");
+	  var inputSecond = document.getElementById("inputSecond");
+	  var inputThird = document.getElementById("inputThird");
+		  var result = document.getElementById("result");
+		  
+		  n = inputFirst.value;
+		  e = inputSecond.value;
+		  i = inputThird.value;
+		  
+		  inputFirst.disabled = false;
+		  inputSecond.disabled = false;
+		  inputThird.disabled = false;
+		  
+		  var input,activeEle,flag3=false;
+		  if (n!='' && !isNaN(n) && !(n<=2) && (n%1==0) ){
+		  
+		  
+		  
+		  
+		  e = ((n - 2) * 180) / n;
+          i = 180-e;
+		  inputSecond.disabled = true;
+		  inputThird.disabled = true;
+		  activeEle = 'inputFirst';
+		  input = 'N =' + n;
+		  res = 'E = ' + e + ' I= ' + i;
+		  res2 = "Exterior Angle =<p class = main> " + e + "&deg;</p> Interior Angle = <p class = main>" + i + "&deg;</p>";
+		  result.innerHTML = res2;
+		  flag3 = true;
+		 
+		 }
+		  
+		 else if (e!='' && !isNaN(e) && !(e<=0) && (e%1==0)){
+		  n = 360/e;
+		  i = 180-e;
+		  inputFirst.disabled = true;
+		  inputThird.disabled = true;
+		  activeEle = 'inputSecond';
+		  input = 'E ='+ e;
+		  res = 'N = ' + n + ' I= ' + i;
+		  res2 = "Total sides = <p class = main> " + n + "</p> Interior Angle = <p class = main>" + i + '&deg;</p>';
+		  if (n%1!=0)
+		  res2+= "<br>PUN Intended. No polygon with non-integral sides is possible"
+		  result.innerHTML = res2;
+		  flag3 = true;
+		  }
+		    else if (i!='' && !isNaN(i) && !(i<=0) && (i%1==0)){
+		  n = 360/(180-i);
+		  e = 180-i;
+		  inputFirst.disabled = true;
+		  inputSecond.disabled = true;
+		  activeEle = 'inputThird';
+		  input = 'I =' + i;
+		  res = 'N = ' + n + ' E= ' + e + '&deg;';
+		  res2 = "Total sides = <p class = main>" + n + "</p> Exterior Angle = <p class = main>" + e + "&deg;</p>";
+		  if (n%1!=0)
+		  res2+= "<br>PUN Intended. No polygon with non-integral sides is possible";
+		  result.innerHTML = res2;
+		  flag3 = true;
+		  }
+		  else {
+
+		  inputFirst.disabled = false;
+		  inputSecond.disabled = false;
+		  inputThird.disabled = false;}
+		  
+if (flag3){
+var item = input + ")" + res + ')' +  object.toLocaleString() + ")" + activeEle + '|';
+	  		
+	  addHistory(item);  
+	  resf.className = "frame active";
+	  desc.className = "frame";
+	  }}
+	  
+	  function usea(input,field){
+	 
+var inputForm = document.getElementById('inputForm');
+inputForm.reset();
+field.value = input;
+location.href = "#inputFirst";
+calc();}
+
+function loadHistory(){
+	  var history = localStorage[id];
+var himsg = document.getElementById("historyMsg");
+var historyItems = history.split('|');
+	
+	if (historyItems.length == 1){
+	historyDiv.innerHTML = 'Your recent history appears here';
+	
+}
+	else {
+			historyDiv.innerHTML= "<input type = button class = clear onclick = clearHistory() value = 'Clear All'>";
+tabEle = "<table id='table' class='dataTable striped border bordered data-role='datatable,draggable' data-searching='true''><thead><tr><td>SR. NO</td><td>Input</td><td>Result</td><td>Date</td><td>Use</td><td>Delete</td></tr></thead><tfoot><tr><td>SR. NO</td><td>Input</td><td>Output</td><td>Date</td><td>Use</td><td>Delete</td></tr></tfoot><tbody>"
+	
+
+	for (i=0; i<historyItems.length-1;i++)
+	   {
+	var historyData = historyItems[i].split(')');
+    
+	index = i;
+tabEle+= "<tr><td>" + (i+1) + "</td><td>" + historyData[0] + "</td><td>" + historyData[1] + "</td><td>" + historyData[2] + "</td><td> <p onclick = usea("  +  historyData[4] + ',' + historyData[3]+")>Use</p></td><td><p onclick = deleteEntry(" + index +")>Delete</p></td></tr>"  ;
+
+	   }tabEle+= "</tbody></table>";
+	   historyDiv.innerHTML+= tabEle;
+	   $('#table').dataTable( {
+    paging: true,
+    searching: true
+} );
+	   
+	   }
+
+
+}
+	 
+	 
+	
+ 	 loadHistory();
+</script>
+
+		</html>

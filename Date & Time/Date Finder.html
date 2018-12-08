@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> DubCen Date Finder Calculator </title>
+<link href="../css/metro.css" rel="stylesheet">
+    <link href="../css/metro-icons.css" rel="stylesheet">
+    <link href="../css/metro-responsive.css" rel="stylesheet">
+    <link href="../css/metro-schemes.css" rel="stylesheet">
+    <link href="../css/icons.css" rel="stylesheet">
+	    <link href="../style2.css" rel="stylesheet">
+
+     <link href="../css/font-awesome.css" rel="stylesheet">
+	  <script src="../sweetalert-master/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../sweetalert-master/dist/sweetalert.css">
+	 <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/metro.js"></script>
+	    <script src="../js/jquery.dataTables.min.js"></script>
+		<script src = "../common - Copy.js"></script>
+	 	 <script src = "../scripts/bignumber.min.js"></script>
+
+<style>
+.main { font-style : bold; margin : 0; padding : 0; display : inline; color : gray; text-align:center;}
+</style>
+	</head>
+	<body>
+   
+	<h1 id = "header" style = "text-align:center; color : gold;"> DubCen</h1>
+	<h1 style = "color : #7FFF00;"><a onclick = "navigate()" class="nav-button transform"><span></span></a> Date Finder
+	<span class = "icon fa fa-calendar-plus-o"></span>
+	</h1>
+		
+		<div class="example margin20" data-text="input">
+            <div class="grid">
+                
+                <div class="row cells1">
+                    <div class="cell">
+					<form onchange = "calc()">
+               <div class="input-control text info"  >
+    <input type="text" placeholder = "Years" id = "inputFirst" required>
+</div><div class="input-control info"  >
+    <input type="text" placeholder = "Months" id = "inputSecond" required>
+</div><div class="input-control info"  >
+    <input type="text" placeholder = "Days" id = "inputThird" required>
+</div>
+			   <input type = "radio" name = "choice" id = "after" checked>After 
+<input type = "radio" name = "choice" id = "before">Before
+			   
+			   Date:<div class="input-control text info" id = "datef" data-role="datepicker,draggable" data-format="mmmm d, yyyy" data-scheme="darcula">
+                            <input type="text" id = "inputFifth" required>
+                            <button class="button"><span class="mif-calendar"></span></button>
+                        </div>
+                </div>
+                
+            </div>
+        </div>   </div>     
+		<div class="accordion large-heading" data-role="accordion" data-close-any="false">
+                            <div class="frame" id = "resf"  >
+                                <div class="heading" style = "background-color:#FFFF00;">Result<span class = "icon fa fa-laptop"></span></div>
+                                <div class="content info result">
+<div class="example" data-text="output" id = "result"> Waiting for Input!
+</div>                                </div>
+                            </div>
+                            <div class="frame active" id = "desc"  >
+                                <div class="heading" style = "background-color:#7FFF00;">Description
+																<span class = "icon  icon-info"></span>
+
+								</div>
+                                <div class="content">
+              <div class="example" data-text="description"> <p class = "source">This calculator finds the date which will be before or after a specified date.</p>
+</div> 
+                         
+			  </div>
+                            </div>
+                            <div class="frame"  >
+                                <div class="heading" style = "background-color:#40E0D0;">History                   
+								<span class = "icon  icon-database"></span>
+</div>
+                                <div class="content" id = "historyDiv">
+		 
+           
+         
+                                </div>
+                            </div>
+                        </div>
+		</body>
+		<script>
+	  var id = '102';
+	  if (localStorage[id] == undefined)
+	  localStorage[id] = "";
+      var table = document.getElementById("table");
+	  var resf = document.getElementById("resf");
+	  	  
+var inputFirst = document.getElementById("inputFirst");
+	  var inputSecond = document.getElementById("inputSecond");
+	  var inputThird = document.getElementById("inputThird");
+	  var inputFourth = document.getElementById("inputFourth");
+	  var inputFifth = document.getElementById("inputFifth");
+	  
+	  function calc(){
+	  	  var object = new Date();
+	
+   
+a= new BigNumber(parseFloat(inputFirst.value));
+b =new BigNumber(parseFloat(inputSecond.value));
+c = new BigNumber(parseFloat(inputThird.value));
+e = inputFifth.value;
+
+f = 'After';
+currentObject = new Date(e);
+	 if (!isNaN(a.toString()) && !isNaN(b.toString()) && !isNaN(c.toString()) && !isNaN(currentObject)){
+	 var before = document.getElementById("before");
+if(before.checked){
+a = -1*a;
+b = -1*b;
+c = -1*c;
+f = 'Before';
+
+}
+currentObject.setFullYear(parseFloat(currentObject.getFullYear())+parseFloat(a));
+currentObject.setMonth(parseFloat(currentObject.getMonth())+parseFloat(b));
+currentObject.setDate(parseFloat(currentObject.getDate()) + parseFloat(c));
+var dobArr = currentObject.toDateString().split(' ');
+var dobFormat = dobArr[2] + ' ' + dobArr[1] + ' ' + dobArr[3];
+res = dobFormat;
+	 result.innerHTML = "Required Date is :  <p class = main>" + dobFormat + "</p>";
+a = Math.abs(a);b = Math.abs(b); c = Math.abs(c);	 
+var item = a + ','+ b +',' + c + ','+ e + ',' + f + ')' + res.toString()+ ')' + object.toLocaleString() + '|';
+	  addHistory(item);  
+resf.className = 'frame active';
+	desc.className = 'frame';	 
+
+	 }}
+
+	 function loadHistory(){
+	  var history = localStorage[id];
+var himsg = document.getElementById("historyMsg");
+var historyItems = history.split('|');
+	
+	if (historyItems.length == 1){
+	historyDiv.innerHTML = 'Your recent history appears here';
+	
+}
+	else {
+			historyDiv.innerHTML= "<input type = button class = clear onclick = clearHistory() value = 'Clear All'>";
+tabEle = "<table id='table' class='dataTable striped border bordered data-role='datatable,draggable' data-searching='true''><thead><tr><td>SR. NO</td><td>Input</td><td>Result</td><td>Date</td><td>Delete</td></tr></thead><tfoot><tr><td>SR. NO</td><td>Input</td><td>Output</td><td>Date</td><td>Delete</td></tr></tfoot><tbody>"
+	
+
+	for (i=0; i<historyItems.length-1;i++)
+	   {
+	var historyData = historyItems[i].split(')');
+    
+	index = i;
+tabEle+= "<tr><td>" + (i+1) + "</td><td>" + historyData[0] + "</td><td>" + historyData[1] + "</td><td>" + historyData[2] + "</td><td><button onclick = deleteEntry(" + index +")>Delete</button></td></tr>"  ;
+	   }tabEle+= "</tbody></table>";
+	   historyDiv.innerHTML+= tabEle;
+	   $('#table').dataTable( {
+    paging: true,
+    searching: true
+} );
+	   
+	   }
+
+
+}
+
+	
+ 	 loadHistory();
+</script>
+
+		</html>

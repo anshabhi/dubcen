@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> DubCen Hourly Income Calculator </title>
+<link href="../css/metro.css" rel="stylesheet">
+    <link href="../css/metro-icons.css" rel="stylesheet">
+    <link href="../css/metro-responsive.css" rel="stylesheet">
+    <link href="../css/metro-schemes.css" rel="stylesheet">
+    <link href="../css/icons.css" rel="stylesheet">
+	    <link href="../style2.css" rel="stylesheet">
+
+     <link href="../css/font-awesome.css" rel="stylesheet">
+	  <script src="../sweetalert-master/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../sweetalert-master/dist/sweetalert.css">
+	 <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/metro.js"></script>
+	    <script src="../js/jquery.dataTables.min.js"></script>
+		<script src = "../common - Copy.js"></script>
+	 	 <script src = "../scripts/bignumber.min.js"></script>
+<script src = "finance.js"></script>
+<style>
+.main { font-style : bold; margin : 0; padding : 0; display : inline; color : gray; text-align:center;}
+</style>
+	</head>
+	<body>
+   
+	<h1 id = "header" style = "text-align:center; color : gold;"> DubCen</h1>
+	<h1 style = "color : #FF8243;"><a onclick = "navigate()" class="nav-button transform"><span></span></a> Income (Hourly)
+	<span class = "icon icon-user-6"></span>
+	</h1>
+		
+		<div class="example margin20" data-text="input">
+            <div class="grid">
+                
+                <div class="row cells1">
+                    <div class="cell">
+					<form onchange = "calc()">
+               <div class="input-control text info"  >
+    <input type="text" placeholder = "Hourly Income" id = "inputFirst" required>
+</div><div class="input-control info"  >
+    <input type="text" placeholder = "Weekly Hours" id = "inputSecond" required>
+</div><div class="input-control info"  >
+    <input type="text" placeholder = "Income Tax Rate" id = "inputThird" required>
+</div>
+			   </form>
+                </div>
+                
+            </div>
+        </div>   </div>     
+		<div class="accordion large-heading" data-role="accordion" data-close-any="false">
+                            <div class="frame" id = "resf"  >
+                                <div class="heading" style = "background-color:#FFFF00;">Result<span class = "icon fa fa-laptop"></span></div>
+                                <div class="content info result">
+<div class="example" data-text="output" id = "result"> Waiting for Input!
+</div>                                </div>
+                            </div>
+                            <div class="frame active" id = "desc"  >
+                                <div class="heading" style = "background-color:#DA70D6;">Description
+								<span class = "icon  icon-info"></span>
+								</div>
+                                <div class="content">
+              <div class="example" data-text="description"> 	 <p class = "source"> This calculator will help you in finding out your income if you are joining some part time job and you will be paid hourly.</p> 
+
+	
+</div> 
+                         
+			  </div>
+                            </div>
+                            <div class="frame"  >
+                                <div class="heading" style = "background-color:#40E0D0;">History                   
+								<span class = "icon  icon-database"></span>
+</div>
+                                <div class="content" id = "historyDiv">
+		 
+           
+         
+                                </div>
+                            </div>
+                        </div>
+		</body>
+		<script>
+	  var id = '407';
+	  if (localStorage[id] == undefined)
+	  localStorage[id] = "";
+      var table = document.getElementById("table");
+	  var resf = document.getElementById("resf");
+	  	  
+var inputFirst = document.getElementById("inputFirst");
+	  var inputSecond = document.getElementById("inputSecond");
+	  var inputThird = document.getElementById("inputThird");
+	  
+	  function calc(){
+	  	  var object = new Date();
+var finance = new Finance();
+	
+a = new BigNumber(parseFloat(inputFirst.value));
+b = new BigNumber(parseFloat(inputSecond.value));
+c = new BigNumber(parseFloat(inputThird.value));
+d = new BigNumber(100);
+
+	if (!isNaN(a) && !isNaN(b) && !isNaN(c)){
+	 
+	 netIncome = a.times(d.sub(c)).times(b).div(100);
+	 dailyIncome = netIncome.div(7).toFixed(3);
+	 monthlyIncome = netIncome.times(4);
+	 yearlyIncome = netIncome.times(12);
+	 
+	 res = "Your net weekly income is: <p class = main>" + netIncome + "</p><br>Daily Income: <p class = main>" + dailyIncome + "</p><br>Monthly Income: <p class = main>" + monthlyIncome + "</p><br>Yearly Income: <p class = main>" + yearlyIncome + "</p>";
+	 result.innerHTML = res;
+var item = a + ','+ b +',' + c + ')' + netIncome +',' + dailyIncome +',' + monthlyIncome + ',' + yearlyIncome+ ")" + object.toLocaleString() + '|';
+	  addHistory(item);    
+resf.className = 'frame active';
+	desc.className = 'frame';	 
+
+	 }}
+ 	 loadHistory();
+</script>
+
+		</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> DubCen Amortization Calculator </title>
+<link href="../css/metro.css" rel="stylesheet">
+    <link href="../css/metro-icons.css" rel="stylesheet">
+    <link href="../css/metro-responsive.css" rel="stylesheet">
+    <link href="../css/metro-schemes.css" rel="stylesheet">
+    <link href="../css/icons.css" rel="stylesheet">
+	    <link href="../style2.css" rel="stylesheet">
+
+     <link href="../css/font-awesome.css" rel="stylesheet">
+	  <script src="../sweetalert-master/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../sweetalert-master/dist/sweetalert.css">
+	 <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/metro.js"></script>
+	    <script src="../js/jquery.dataTables.min.js"></script>
+		<script src = "../common - Copy.js"></script>
+	 	 <script src = "../scripts/bignumber.min.js"></script>
+<script src = "amortizationJS.js"></script>
+<style>
+.main { font-style : bold; margin : 0; padding : 0; display : inline; color : gray; text-align:center;}
+</style>
+	</head>
+	<body>
+   
+	<h1 id = "header" style = "text-align:center; color : gold;"> DubCen</h1>
+	<h1 style = "color : #44A3FF;"><a onclick = "navigate()" class="nav-button transform"><span></span></a> Amortization
+	<span class = "icon icon-calendar-3"></span>
+	</h1>
+		
+		<div class="example margin20" data-text="input">
+            <div class="grid">
+                
+                <div class="row cells1">
+                    <div class="cell">
+					<form onchange = "calc()">
+               <div class="input-control text info"  >
+    <input type="text" placeholder = "Amount" id = "inputFirst" required>
+</div><div class="input-control info"  >
+    <input type="text" placeholder = "Months" id = "inputSecond" required>
+</div><div class="input-control info"  >
+    <input type="text" placeholder = "Rate" id = "inputThird" required>
+</div>
+			   </form>
+                </div>
+                
+            </div>
+        </div>   </div>     
+		<div class="accordion large-heading" data-role="accordion" data-close-any="false">
+                            <div class="frame" id = "resf"  >
+                                <div class="heading" style = "background-color:#FFFF00;">Result<span class = "icon fa fa-laptop"></span></div>
+                                <div class="content info" style = "font-size : 2.5vh;" >
+<div class="example" data-text="output" id = "result"> Waiting for Input!
+</div>                                </div>
+                            </div>
+                            <div class="frame active" id = "desc"  >
+                                <div class="heading" style = "background-color:#DA70D6;">Description
+								<span class = "icon  icon-info"></span>
+								</div>
+                                <div class="content">
+              <div class="example" data-text="description"> <p class = "source">
+			 This calculator will generate an Amortization table for you 
+</p>
+	
+	 
+		
+	</p>
+	
+</div> 
+                         
+			  </div>
+                            </div>
+                            <div class="frame"  >
+                                <div class="heading" style = "background-color:#40E0D0;">History                   
+								<span class = "icon  icon-database"></span>
+</div>
+                                <div class="content" id = "historyDiv">
+		 
+           
+         
+                                </div>
+                            </div>
+                        </div>
+		</body>
+		<script>
+	  var id = '401';
+	  if (localStorage[id] == undefined)
+	  localStorage[id] = "";
+      var table = document.getElementById("table");
+	  var resf = document.getElementById("resf");
+	  	  
+var inputFirst = document.getElementById("inputFirst");
+	  var inputSecond = document.getElementById("inputSecond");
+	  var inputThird = document.getElementById("inputThird");
+	  
+	  function calc(){
+	  	  var object = new Date();
+	
+a = new BigNumber(parseFloat(inputFirst.value));
+b = new BigNumber(parseFloat(inputSecond.value));
+c = new BigNumber(parseFloat(inputThird.value));
+
+	if (!isNaN(a) && !isNaN(b) && !isNaN(c)){
+	 
+	 var res = finance.calculateAmortization(a, b, c);
+	 var payment = finance.calculatePayment(a, b, c);
+
+result.innerHTML= "Each Payment Should Be Equal to<p class = main>: " + payment + "</p>";
+
+
+var bodyTH = '';
+bodyTH = '<table class="table striped hovered cell-hovered bordered"><thead><tr><th>Serial Number</th> <th>Payment to Principle</th> <th>Principle Left</th><th>Interest</th><th>Payment to Interest</th></tr></thead><tbody>';
+for (i=0;i<b;i++)
+{
+bodyTH+= "<tr><td>" + parseFloat(i+1) + "</td><td>" + new BigNumber(parseFloat(res[i]['paymentToPrinciple']).toPrecision(10)) + "</td><td>" + new BigNumber(parseFloat(res[i]['principle']).toPrecision(10)) + "</td><td>" + new BigNumber( parseFloat(res[i]['interest']).toPrecision(10)) + "</td><td>" + new BigNumber(parseFloat(res[i]['paymentToInterest']).toPrecision(10)) + "</td></tr>"; 
+}
+bodyTH+= "</tbody></table>";
+result.innerHTML+= bodyTH;
+	 var item = a + ','+ b +',' + c + ")" + object.toLocaleString() + '|';
+	  addHistory(item);  
+resf.className = 'frame active';
+	desc.className = 'frame';	 
+
+	 }}
+	 
+	 function loadHistory(){
+	  var history = localStorage[id];
+var himsg = document.getElementById("historyMsg");
+var historyItems = history.split('|');
+	
+	if (historyItems.length == 1){
+	historyDiv.innerHTML = 'Your recent history appears here';
+	
+}
+	else {
+			historyDiv.innerHTML= "<input type = button class = clear onclick = clearHistory() value = 'Clear All'>";
+tabEle = "<table id='table' class='dataTable striped border bordered data-role='datatable,draggable' data-searching='true''><thead><tr><td>SR. NO</td><td>Input</td><td>Date</td><td>Use</td><td>Delete</td></tr></thead><tfoot><tr><td>SR. NO</td><td>Input</td><td>Date</td><td>Use</td><td>Delete</td></tr></tfoot><tbody>"
+	
+
+	for (i=0; i<historyItems.length-1;i++)
+	   {
+	var historyData = historyItems[i].split(')');
+    
+	index = i;
+tabEle+= "<tr><td>" + (i+1) + "</td><td>" + historyData[0] + "</td><td>" + historyData[1] + "</td><td> <button onclick = usea(\"" + historyData[0] + "\")>Use</button></td><td><button onclick = deleteEntry(" + index +")>Delete</button></td></tr>"  ;
+	   }tabEle+= "</tbody></table>";
+	   historyDiv.innerHTML+= tabEle;
+	   $('#table').dataTable( {
+    paging: true,
+    searching: true
+} );
+	   
+	   }
+
+
+}
+	 
+ 	 loadHistory();
+</script>
+
+		</html>

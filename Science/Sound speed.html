@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> DubCen Sound Speed Calculator </title>
+<link href="../css/metro.css" rel="stylesheet">
+    <link href="../css/metro-icons.css" rel="stylesheet">
+    <link href="../css/metro-responsive.css" rel="stylesheet">
+    <link href="../css/metro-schemes.css" rel="stylesheet">
+    <link href="../css/icons.css" rel="stylesheet">
+	    <link href="../style2.css" rel="stylesheet">
+
+     <link href="../css/font-awesome.css" rel="stylesheet">
+	  <script src="../sweetalert-master/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../sweetalert-master/dist/sweetalert.css">
+	 <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/metro.js"></script>
+	    <script src="../js/jquery.dataTables.min.js"></script>
+		<script src = "../common - Copy.js"></script>
+	 	 <script src = "../scripts/bignumber.min.js"></script>
+	</head>
+	<body>
+   
+	<h1 id = "header" style = "text-align:center; color : gold;"> DubCen</h1>
+	<h1 style = "color : #8B008B;"><a onclick = "navigate()" class="nav-button transform"><span></span></a> Sound Speed
+	<span class = "icon icon-sound "></span>
+	</h1>
+		
+		<div class="example margin20" data-text="input">
+            <div class="grid">
+                
+                <div class="row cells1">
+                    <div class="cell">
+					<form onchange = "calc()">
+               <div class="input-control info"  data-keys="1,2,3,4,5,6,7,8,9,.,0">
+    <input type="text" placeholder = "Adiabatic Constant (&gamma);" value = 1.4 id = "inputFirst" required>
+</div>               <div class="input-control info"  >
+    <input type="text" placeholder = "Temperature (in &deg;C)" id = "inputSecond" required>
+</div>
+<div class="input-control info"  data-keys="1,2,3,4,5,6,7,8,9,.,0">
+    <input type="text" placeholder = "Molecular Mass (in kg/mol)" value = 0.028 id = "inputThird" required>
+</div>
+</form>
+                            
+                        </div>
+                </div>
+                
+            </div>
+        </div>   </div>     
+		<div class="accordion large-heading" data-role="accordion" data-close-any="false">
+                            <div class="frame" id = "resf"  >
+                                <div class="heading" style = "background-color:#40E0D0">Result<span class = "icon fa fa-laptop"></span></div>
+                                <div class="content info result">
+<div class="example" data-text="output" id = "result"> Waiting for Input!
+</div>                                </div>
+                            </div>
+                            <div class="frame active" id = "desc"  >
+                                <div class="heading" style = "background-color:#7FFF00;">Description
+																<span class = "icon  icon-info"></span>
+
+								</div>
+                                <div class="content">
+              <div class="example" data-text="description"> 
+			  <p class = "source">
+	This calculator computes the Speed of Sound in Air. The following formula is used:
+	<img class = "center" src = "sound.png" alt = "Speed of Sound">
+		
+		
+	</p>
+	 <p class = "working">
+	 	where,<ul>
+		<li>R - Universal gas constant</li>
+<li>T - Temperature (in K)</li>
+<li>M - Molecular mass of gas, g/mol (29 for dry air)</li>
+<li> &gamma; - the adiabatic constant of gas. (1.4 for dry air)</li>
+	</ul> 
+	 </p>
+</div> 
+                         
+			  </div>
+                            </div>
+                            <div class="frame"  >
+                                <div class="heading" style = "background-color:#FFFF00;;">History                   
+								<span class = "icon  icon-database"></span>
+</div>
+                                <div class="content" id = "historyDiv">
+		 
+           
+         
+                                </div>
+                            </div>
+                        </div>
+		</body>
+		<script>
+	  var id = '904';
+	  if (localStorage[id] == undefined)
+	  localStorage[id] = "";
+      var table = document.getElementById("table");
+	  var resf = document.getElementById("resf");
+	  	  var inputFirst = document.getElementById("inputFirst");
+	  var inputSecond = document.getElementById("inputSecond");
+	var result = document.getElementById("result");
+	  
+	  function calc(){
+	  
+	  var object = new Date();
+
+a = new BigNumber(parseFloat(inputFirst.value));
+b = new BigNumber(parseFloat(inputSecond.value));
+c = new BigNumber(parseFloat(inputThird.value));
+	 if (!isNaN(a) && !isNaN(b) && !isNaN(c)){
+	b = b.add(273);	 
+
+	 res = a.times(8.314).times(b).div(c).squareRoot();
+      res = res.toFixed(4);	 	 
+	 result.innerHTML = "The speed of sound is: <p class = main>" + res + " m/s</p>";	 
+var item = a + ','+ b +',' + c + ')' + res+ ")" + object.toLocaleString() + '|';
+	  addHistory(item); 	 
+
+	  resf.className = 'frame active';
+	desc.className = 'frame';	
+	  
+	 }}
+	 
+	 
+	 
+	
+ 	 loadHistory();
+</script>
+
+		</html>

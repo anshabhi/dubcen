@@ -1,0 +1,58 @@
+{
+    "name": "DubCen",
+    "snapshot": "snapshot_blob.bin",
+    "main": "index.html",
+    "app_name": "DubCen",
+    "description": "Changing the way you calculate!",
+    "single_instance": true,
+    "window": {
+        "kiosk": false,
+        "as_desktop": false,
+        "min_width": 640,
+        "always_on_top": false,
+        "resizable": true,
+        "show": true,
+        "width": 1366,
+        "title": "Dubcen",
+        "frame": true,
+        "visible": true,
+        "exe_icon": "logo.png",
+        "position": "center",
+        "transparent": false,
+        "show_in_taskbar": true,
+        "height": 768,
+        "icon": "logo.png",
+        "max_width": 1366,
+        "max_height": 768,
+        "toolbar": false,
+        "kiosk_emulation": false,
+        "fullscreen": false,
+        "min_height": 480
+    },
+    "webkit": {
+        "page_cache": false,
+        "java": false,
+        "plugin": false
+    },
+    "nodejs": false,
+    "webexe_settings": {
+        "mac-x64": false,
+        "uncompressed_folder": false,
+        "mac-x32": false,
+        "export_dir": "output",
+        "linux-x64": false,
+        "nw_compression_level": 0,
+        "force_download": false,
+        "download_dir": "C:/Users/anshu.NISM-LAP2/AppData/Local/Web2Executable/Web2Executable/files/downloads",
+        "linux-x32": false,
+        "custom_script": "",
+        "windows-x64": false,
+        "sdk_build": false,
+        "nw_version": "0.13.4",
+        "windows-x32": true
+    },
+    "version": "2.2",
+    "additional_trust_anchors": [
+        ""
+    ]
+}

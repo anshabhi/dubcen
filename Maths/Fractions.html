@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>DubCen</title>
+	 <link rel="stylesheet" href="style2.css" type="text/css"/>
+<script src="../sweetalert-master/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../sweetalert-master/dist/sweetalert.css">	
+<style>
+.normal {
+position : absolute;
+width : 100%; top : 0%;
+margin-left : 2%; padding : 0;}
+.polar { position : absolute; margin-top : 20%;
+width : 100%; margin-left : 2%; padding : 0;}
+.input {width  : 100%; margin : 0; padding : 0;}
+.or {position : absolute; top : 50%; left : 50%; display : inline;}
+.values {position : absolute; left:-10%; margin-top : 12%;}
+.result { position : absolute; top : 27%; height : 10%; width : 100%; position : absolute; color : #5600CC;}
+.add{ position : absolute; top : 23%; left : 5%;}
+.rem{position : absolute; top : 23%; left : 15%;}
+.description {top : 37%; left : 5%; position : absolute; height : 13%; width : 90%; overflow-x : hidden; color : #5600CC;  margin:0; padding : 0;}
+
+
+</style>
+
+</head>
+
+<body>
+<div class = "navigation" id = "navigation" onmouseover = "navigationAnimate()">
+<p class = "heading" id = "heading"></p>
+</div>
+<div class = "blank" onMouseOver = "navigationDeAnimate()"></div>
+<form id = "input" class = "input">
+<div style = "width : 18%; top : 10%; height : 20%; position : absolute; left:0%"> 
+<input id = "0" onchange = "calc()" class = "normal" placeholder = "Enter the Fraction" style = "left:0%;" onfocus = "getID()">
+</div>
+</form>
+<button id = "toolbox" class = "add" onclick = "add()"> Add Another</button>
+<button id = "toolbox2" class = "rem" onclick = "rem()" disabled> Remove Last</button>
+
+<p id = "inputResult" class = "result"></p>
+<p id = "result" class = "result"></p>
+
+<div class = "description">
+<p class = "source"> The numbers which can't be expressed on a real number line are called Complex Numbers. The complex part is denoted by
+iota (i)</p>
+<p class = "working">This calculator can calculate inverse, polar form and perform operations any number of complex numbers</p>
+</div>
+<div>
+<table border=0 class = "inputTable">
+<tr>
+
+<td><input type="button"   VALUE="  1  " OnClick= "makeInput ('1')" class = "button"></td>
+<td><input type="button"  VALUE="  2  " OnCLick= "makeInput('2')"  class = "button" ></td>
+<td><input type="button" VALUE="  3  " OnClick="makeInput('3')"  class = "button"></td>
+</tr>
+<tr>
+<td><input type="button"  VALUE="  4  " OnClick="makeInput('4')"  class = "button"></td>
+<td><input type="button" VALUE="  5  " OnCLick="makeInput('5')"  class = "button"></td>
+<td><input type="button"  VALUE="  6  " OnClick="makeInput( '6')"  class = "button"></td>
+</tr>
+<tr>
+<td><input type="button" value="  7  " OnClick="makeInput('7')"  class = "button"></td>
+<td><input type="button" value="  8  " OnClick="makeInput('8')"  class = "button"></td>
+<td><input type="button" value="  9  " OnClick="makeInput('9')"  class = "button"></td>
+</tr>
+<tr>
+<td><input type = "button" VALUE="  c  " OnClick="makeInput('')"  class = "button"></td>
+<td><input type="button" VALUE="  0  " OnClick="makeInput('0')"  class = "button"></td>
+<td><input type="button" VALUE="  =  " OnClick="calc()"  class = "button">
+<tr>
+<td><input type="button" VALUE="  + " OnClick="makeInput('+')"  class = "button">
+<td><input type="button" VALUE="  i " OnClick="makeInput('i')"  class = "button">
+
+<td><input type="button" VALUE="  - " OnClick="makeInput('-')"  class = "button">
+</tr>
+</td>
+</tr>
+</table>
+
+</div>
+<div class = "history" id = "historyDiv">
+	 <p id = "historyMsg"><input type = "button" class = "clear" onclick = "clearHistory()" value = "CLear ALL"></p>
+	 <table id = "table" class = "historyT">
+	 </table>
+	 </div>
+
+
+</body>
+
+
+<script src = "math.js">
+
+</script>
+<script src = "common - Copy.js"></script>
+<script src = "../scripts/bignumber.min.js"></script>
+
+ <script type="text/javascript" src="../gs_sortable.js"></script>
+
+<script type="text/javascript">
+<!--
+
+var TSort_Data = new Array ('table', 'i', 's', 'i','d');
+
+// -->
+</script>
+<script>
+var id = '732';
+
+math.config({
+  number: 'Fraction' 
+});
+
+if (localStorage[id] == undefined)
+localStorage[id] = '';
+var next = 1;
+var curr = next-1;
+var inputArea = document.getElementById("input");
+var resultArea = document.getElementById("result");
+var inputR = document.getElementById("inputResult");
+var inputString = "",historyString = '';
+
+function add(){
+var newdiv = document.createElement("div"); 
+newdiv.style.left = 20*next + "%"; 
+newdiv.style.position = 'absolute';
+newdiv.style.width =  "18%";
+newdiv.style.height = "20%"
+
+
+newdiv.innerHTML = "<select id = " + curr + "select" + " onchange = " + "calc()" + "><option>+</option><option>-</option><option>*</option><option>/</option></select><input id = " + next + " onchange = " + "calc()" + ">"; 
+
+inputArea.appendChild (newdiv); 
+next++;
+curr++;
+toolbox2.disabled = false;
+}
+
+function printRatio (value) {
+  return math.format(value, {fraction: 'ratio'});
+}
+
+
+function calc(){
+flag5=false,flag6=false,res = '';
+var object = new Date();
+var inputs = new Array();
+var inputV = new Array();
+var inputD = new Array();
+var historyString = '',inputString='';
+for (i=0;i<next;i++){
+inputs[i] = document.getElementById(i);
+inputD[i] = math.fraction(inputs[i].value);
+inputV[i]= inputs[i].value;}
+var result="",inputString = "";
+
+
+if (next == 1){
+result+= inputV[0] + " as decimal is: " + inputD[0]  + " <br> " + inputV[0] +  "as percent is: " + inputD[0]*100 + "%" ;
+}
+
+else {
+inputD.sort();
+for (i=0;i<=curr;i++){
+result+= printRatio(inputD[i]) + ">";
+if (i!=curr){
+var selectid = i + "select";
+var sel = document.getElementById (selectid);
+inputString+= printRatio(inputD[i]) + sel.value;
+flag = 1;}
+result[result.length-1] = '';
+}if (flag == 1)
+inputString+= printRatio(inputD[curr]);
+ inputR.innerHTML= printRatio(math.eval(inputString));}
+resultArea.innerHTML = result;
+
+
+var item = inputString + ")" + result+")" + object.toLocaleString() + '|';
+	  addHistory(item);  
+	  
+	  }
+loadHistory();
+function loadHistory(){
+	  var history = localStorage[id];
+var himsg = document.getElementById("historyMsg");
+var historyItems = history.split('|');
+	
+	if (historyItems.length == 1){
+	himsg.innerHTML = 'Your recent history appears here';
+
+	table.innerHTML = "";}
+	else {
+		himsg.innerHTML = "<input type = button class = clear onclick = clearHistory() value = CLear ALL>";
+
+	table.innerHTML = "";
+	var header = document.createElement("thead");
+	header.innerHTML = "<tr><td>SR. NO</td><td>Input</td><td>Output</td><td>Date</td><td>Delete</td></tr>"; 
+	table.appendChild(header);
+	var bodyT = document.createElement("tbody");
+	bodyT.innerHTML = "";
+	for (i=0; i<historyItems.length-1;i++)
+	   {
+	var historyData = historyItems[i].split(')');
+    
+	index = i;
+
+	bodyT.innerHTML+= "<tr><td>" + (i+1) + "</td><td>" + historyData[0] + "</td><td>" + historyData[1] + "</td><td>" + historyData[2] + "</td><td><p onclick = deleteEntry(" + index +")>Delete</p></td></tr>"  ;
+	   }table.appendChild(bodyT);
+tsRegister();}
+
+}
+
+function rem(){
+var inputArea = document.getElementById("input");
+inputArea.removeChild(inputArea.lastChild);
+next--;
+curr--;
+if (next == 1)
+toolbox2.disabled = true;
+}
+
+title = "Fractions Calculator";
+heading.innerHTML = title;
+</script>
+</html>
